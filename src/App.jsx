@@ -119,7 +119,7 @@ function Bot({ open, toggle }) {
           "anthropic-version": "2023-06-01",
           "anthropic-dangerous-direct-browser-access": "true",
         },
-        body: JSON.stringify({ model: "claude-haiku-4-5-20251001", max_tokens: 300, system, messages: newHist }),
+        body: JSON.stringify({ model: "claude-haiku-4-5", max_tokens: 300, system, messages: newHist }),
       });
       const data = await res.json();
       const reply = data.content?.[0]?.text || "Something went wrong, please try again!";
