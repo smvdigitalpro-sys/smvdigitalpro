@@ -430,7 +430,7 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>Pricing</p>
-            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>Simple, <span style={{ color: C.accentSoft }}>Transparent</span> Pricing</h2>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>AI Chatbot <span style={{ color: C.accentSoft }}>Packages</span></h2>
             <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>No hidden fees. Cancel anytime. First 3 clients get 50% off setup.</p>
           </div>
           <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
@@ -465,7 +465,7 @@ export default function App() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>Websites</p>
-            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>Revenue-Ready <span style={{ color: C.accentSoft }}>Websites</span></h2>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>Website <span style={{ color: C.accentSoft }}>Creation</span></h2>
             <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Professional websites with AI chatbot built-in. One-time setup, no hidden fees.</p>
           </div>
           <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
