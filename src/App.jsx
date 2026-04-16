@@ -458,6 +458,13 @@ export default function App() {
           <div style={{ textAlign: "center", marginTop: 48, padding: 28, background: C.card, border: `1px solid ${C.border}`, borderRadius: 18 }}>
             <p style={{ color: C.sub, fontSize: 15 }}>🛡️ <strong style={{ color: C.text }}>30-Day Money Back Guarantee</strong> — Not happy with the monthly service? We refund your subscription. Setup fee is non-refundable.</p>
           </div>
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accentSoft; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; e.currentTarget.style.color = C.sub; }}>
+              💬 Have questions? Chat with our AI →
+            </button>
+          </div>
         </div>
       </section>
 
@@ -490,9 +497,16 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
-                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started →</button>
+                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.price} →</button>
               </div>
             ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accentSoft; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; e.currentTarget.style.color = C.sub; }}>
+              💬 Have questions? Chat with our AI →
+            </button>
           </div>
         </div>
       </section>
@@ -523,7 +537,7 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
-                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started →</button>
+                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
               </div>
             ))}
           </div>
