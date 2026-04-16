@@ -13,16 +13,28 @@ const C = {
 };
 
 const services = [
-  { icon: "🤖", title: "AI Assistants That Sell", sub: "Turn every inquiry into revenue", desc: "Intelligent assistants on WhatsApp & Telegram that qualify leads, book appointments, answer questions, and follow up — automatically. They remember every customer and close deals while you sleep.", tags: ["Lead Qualification", "Auto-Booking", "24/7 Support", "CRM Sync"], price: "$69", per: "/mo", result: "→ 3x more bookings" },
-  { icon: "🧠", title: "AI Virtual Employee", sub: "20 hours back every week", desc: "A full-time digital assistant that handles your inbox, researches competitors, manages your calendar, monitors opportunities, and delivers a morning briefing with actionable insights every single day.", tags: ["Email Drafts", "Daily Briefings", "Opportunity Alerts", "Task Management"], price: "$89", per: "/mo", result: "→ 20h saved/week" },
-  { icon: "⚡", title: "Business Automations", sub: "Your business runs itself", desc: "Custom AI workflows that handle email sequences, social media posting, competitor monitoring, invoice processing, and reporting — all running on complete autopilot while you focus on growth.", tags: ["Email Flows", "Social Auto-Post", "Price Tracking", "Auto-Reports"], price: "$150", per: " setup", result: "→ 80% less manual work" },
-  { icon: "🌐", title: "Revenue-Ready Websites", sub: "Websites that actually convert", desc: "Professional websites with integrated AI chatbots, conversion-optimized design, SEO that ranks, and free hosting. Not just a pretty page — a 24/7 client acquisition machine.", tags: ["Conversion Optimized", "AI Chatbot Built-In", "SEO Ready", "Free Hosting"], price: "$150", per: " setup", result: "→ 40% more leads" },
+  { icon: "🤖", title: "AI Assistants That Sell", sub: "Turn every inquiry into revenue", desc: "Intelligent assistants on WhatsApp & Telegram that qualify leads, book appointments, answer questions, and follow up — automatically. They remember every customer and close deals while you sleep.", tags: ["Lead Qualification", "Auto-Booking", "24/7 Support", "CRM Sync"], result: "→ 3x more bookings" },
+  { icon: "🧠", title: "AI Virtual Employee", sub: "20 hours back every week", desc: "A full-time digital assistant that handles your inbox, researches competitors, manages your calendar, monitors opportunities, and delivers a morning briefing with actionable insights every single day.", tags: ["Email Drafts", "Daily Briefings", "Opportunity Alerts", "Task Management"], result: "→ 20h saved/week" },
+  { icon: "⚡", title: "Business Automations", sub: "Your business runs itself", desc: "Custom AI workflows that handle email sequences, social media posting, competitor monitoring, invoice processing, and reporting — all running on complete autopilot while you focus on growth.", tags: ["Email Flows", "Social Auto-Post", "Price Tracking", "Auto-Reports"], result: "→ 80% less manual work" },
+  { icon: "🌐", title: "Revenue-Ready Websites", sub: "Websites that actually convert", desc: "Professional websites with integrated AI chatbots, conversion-optimized design, SEO that ranks, and free hosting. Not just a pretty page — a 24/7 client acquisition machine.", tags: ["Conversion Optimized", "AI Chatbot Built-In", "SEO Ready", "Free Hosting"], result: "→ 40% more leads" },
 ];
 
 const plans = [
-  { name: "Starter", setup: "$99", orig: "$200", mo: "$69", desc: "Start automating with zero risk", feats: ["AI chatbot on 1 channel", "500 messages/month", "Basic lead capture", "Email support", "48h setup"], cta: "Start Now" },
-  { name: "Business", setup: "$199", orig: "$400", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory", "WhatsApp + Telegram", "Automated scheduling", "Lead qualification", "Personalized responses", "Priority support"], cta: "Start Free Trial", pop: true },
-  { name: "Premium", setup: "$349", orig: "$700", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included", "Voice AI (ElevenLabs)", "CRM integrations", "Monthly performance report", "Dedicated account manager", "Custom workflows"], cta: "Contact pe Telegram" },
+  { name: "Starter", setup: "$199", orig: "$499", mo: "$69", desc: "Start automating with zero risk", feats: ["AI chatbot on 1 channel (site, Telegram or WhatsApp)", "Answers FAQs automatically 24/7", "Basic lead capture", "Greets customers by name", "Email support", "Setup in 48h"], cta: "Start Now" },
+  { name: "Business", setup: "$299", orig: "$799", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory — recognizes returning customers", "WhatsApp + Telegram both included", "Automated appointment scheduling", "Lead qualification & follow-up", "Personalized responses", "Priority support", "Setup in 72h"], cta: "Start Free Trial", pop: true },
+  { name: "Premium", setup: "$499", orig: "$1,499", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included — unlimited messages", "Voice AI (ElevenLabs)", "Full CRM integration", "Monthly performance report", "Dedicated account manager", "Custom AI workflows", "Setup in 5 days"], cta: "Contact pe Telegram" },
+];
+
+const webPlans = [
+  { name: "Landing Page", icon: "🥉", orig: "$598", price: "$299", mo: "$29", desc: "Perfect for a single, high-converting page", feats: ["1 page professional design", "AI chatbot integrated", "SEO optimized", "Free hosting", "Mobile friendly", "48h delivery"], result: "→ Fast & effective" },
+  { name: "Business Site", icon: "🥈", orig: "$998", price: "$499", mo: "$49", desc: "Complete online presence for your business", feats: ["5-7 pages custom design", "AI chatbot integrated", "Full SEO setup", "Contact forms", "Free hosting", "5 days delivery"], result: "→ Full presence", pop: true },
+  { name: "Full Website", icon: "🥇", orig: "$1,798", price: "$899", mo: "$99", desc: "Premium website built to scale", feats: ["10+ pages premium design", "Advanced AI chatbot", "SEO + Blog setup", "CRM integrations", "Free hosting", "10 days delivery"], result: "→ Scale fast" },
+];
+
+const waPlans = [
+  { name: "WhatsApp Starter", icon: "🟢", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that dont want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
+  { name: "WhatsApp Business", icon: "🔵", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
+  { name: "WhatsApp Premium", icon: "🟣", orig: "$1,999", setup: "$999", mo: "$249", desc: "For serious businesses that want a complete system", feats: ["Everything in Business +", "Unlimited conversations", "Multi-language EN/ES/RO", "Full CRM integration", "Monthly performance report", "Voice AI optional (ElevenLabs)", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
 ];
 
 const posts = [
@@ -43,18 +55,13 @@ const SALES_SYSTEM = `You are the SMV AI Advisor, a friendly and professional AI
 Your goal: understand the visitor's business and guide them toward booking a free consultation.
 
 Services:
-- AI Assistants (chatbots on WhatsApp & Telegram): $69/mo + $99-199 setup
-- AI Virtual Employee: $89/mo
-- Business Automations: $150 setup
-- Revenue-Ready Websites with AI: $150 setup
-
-Plans:
-- Starter: $99 setup + $69/mo
-- Business (most popular): $199 setup + $129/mo
-- Premium: $349 setup + $199/mo
+- AI Chatbot (WhatsApp & Telegram): Starter $199 setup + $69/mo, Business $299 setup + $129/mo, Premium $499 setup + $199/mo
+- Revenue-Ready Websites: Landing Page $299, Business Site $499, Full Website $899 (optional maintenance +$29-99/mo)
+- AI Virtual Employee: custom quote
+- Business Automations: custom quote
 
 Rules:
-- Keep responses SHORT (max 3-4 lines)
+- Keep responses SHORT (max 3-4 lines), NO markdown formatting, NO asterisks, NO bold text
 - Be warm, confident, direct
 - Ask one question at a time
 - When ready, collect name, email, WhatsApp for free consultation
@@ -99,7 +106,7 @@ function Bot({ open, toggle }) {
 
   useEffect(() => {
     if (open && msgs.length === 0) {
-      setMsgs([{ r: "bot", t: "Hey! 👋 I'm the SMV AI Advisor.\n\nI can help you automate your business — or show you a live demo of what your AI assistant would look like.\n\nWhat would you like?", opts: ["💼 I want more clients", "🎬 Show me a demo", "💰 Pricing info"] }]);
+      setMsgs([{ r: "bot", t: "Hey! 👋 I'm the SMV AI Advisor.\n\nHow can I help you today?", opts: ["💼 I want more clients", "🎬 Show me a demo", "💰 Pricing info"] }]);
     }
   }, [open]);
 
@@ -169,6 +176,8 @@ function Bot({ open, toggle }) {
     addBot(reply, demoOpts);
   };
 
+  const renderText = (text) => text.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1').replace(/#{1,3} /g, '');
+
   if (!open) return (
     <div style={{ position: "fixed", bottom: 28, right: 28, zIndex: 9999, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
       <div style={{ background: C.card, border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "12px 18px", maxWidth: 240, boxShadow: `0 8px 30px rgba(0,0,0,.4)`, animation: "su .4s ease-out .5s both" }}>
@@ -197,7 +206,7 @@ function Bot({ open, toggle }) {
         {msgs.map((m, i) => (
           <div key={i}>
             <div style={{ display: "flex", justifyContent: m.r === "user" ? "flex-end" : "flex-start" }}>
-              <div style={{ maxWidth: "88%", padding: "12px 16px", borderRadius: m.r === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px", background: m.r === "user" ? C.accent : C.card2, color: "#fff", fontSize: 13.5, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{m.t}</div>
+              <div style={{ maxWidth: "88%", padding: "12px 16px", borderRadius: m.r === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px", background: m.r === "user" ? C.accent : C.card2, color: "#fff", fontSize: 13.5, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{renderText(m.t)}</div>
             </div>
             {m.opts && <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12, paddingLeft: 4 }}>
               {m.opts.map((o, j) => <button key={j} onClick={() => handleOption(o)} style={{ padding: "12px 18px", borderRadius: 14, border: `1.5px solid ${C.accent}`, background: "rgba(124,108,240,0.06)", color: C.accentSoft, fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "all .25s", textAlign: "left" }}
@@ -328,8 +337,7 @@ export default function App() {
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 22 }}>
                   {s.tags.map((f,j) => <span key={j} style={{ padding: "5px 12px", borderRadius: 8, background: "rgba(124,108,240,.08)", color: C.accentSoft, fontSize: 11.5, fontWeight: 600 }}>{f}</span>)}
                 </div>
-                <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <div><span style={{ fontSize: 28, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{s.price}</span><span style={{ fontSize: 14, color: C.sub }}>{s.per}</span></div>
+                <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 16, display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
                   <span onClick={() => setChat(true)} style={{ color: C.accentSoft, fontSize: 13, fontWeight: 600, cursor: "pointer" }}>Learn more →</span>
                 </div>
               </div>
@@ -368,7 +376,76 @@ export default function App() {
             ))}
           </div>
           <div style={{ textAlign: "center", marginTop: 48, padding: 28, background: C.card, border: `1px solid ${C.border}`, borderRadius: 18 }}>
-            <p style={{ color: C.sub, fontSize: 15 }}>🛡️ <strong style={{ color: C.text }}>30-Day Money Back Guarantee</strong> — If you don't see results in 30 days, we refund everything. No questions asked.</p>
+            <p style={{ color: C.sub, fontSize: 15 }}>🛡️ <strong style={{ color: C.text }}>30-Day Money Back Guarantee</strong> — Not happy with the monthly service? We refund your subscription. Setup fee is non-refundable.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "110px 32px", background: `linear-gradient(180deg,${C.bg} 0%,${C.bg2} 50%,${C.bg} 100%)` }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>Websites</p>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>Revenue-Ready <span style={{ color: C.accentSoft }}>Websites</span></h2>
+            <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Professional websites with AI chatbot built-in. One-time setup, no hidden fees.</p>
+          </div>
+          <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+            {webPlans.map((p,i) => (
+              <div key={i} style={{ background: p.pop?`linear-gradient(135deg,${C.card} 0%,rgba(124,108,240,.08) 100%)`:C.card, border: `1px solid ${p.pop?C.accent:C.border}`, borderRadius: 22, padding: 36, position: "relative", transition: "transform .3s", boxShadow: p.pop?`0 0 40px ${C.accentGlow}`:"none" }}
+                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-6px)"}
+                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
+                {p.pop && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", padding: "5px 20px", borderRadius: 20, background: C.gradBtn, fontSize: 11.5, color: "#fff", fontWeight: 800, whiteSpace: "nowrap" }}>⭐ MOST POPULAR</div>}
+                <div style={{ fontSize: 32, marginBottom: 12 }}>{p.icon}</div>
+                <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit',sans-serif" }}>{p.name}</h3>
+                <p style={{ fontSize: 13, color: C.sub, marginBottom: 24 }}>{p.desc}</p>
+                <div style={{ marginBottom: 8 }}><span style={{ fontSize: 13, color: C.dim, textDecoration: "line-through" }}>{p.orig}</span><span style={{ fontSize: 13, color: C.ok, marginLeft: 8, fontWeight: 700 }}>50% off</span></div>
+                <div style={{ marginBottom: 8 }}>
+                  <span style={{ fontSize: 42, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{p.price}</span>
+                  <span style={{ fontSize: 14, color: C.sub }}> one-time</span>
+                </div>
+                <div style={{ marginBottom: 28 }}>
+                  <span style={{ fontSize: 13, color: C.dim }}>+ </span>
+                  <span style={{ fontSize: 16, fontWeight: 700, color: C.accentSoft }}>{p.mo}/mo</span>
+                  <span style={{ fontSize: 12, color: C.dim }}> maintenance (optional)</span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
+                  {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
+                </div>
+                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started →</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "110px 32px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>WhatsApp</p>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>WhatsApp <span style={{ color: C.accentSoft }}>AI Bot</span></h2>
+            <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Your AI assistant directly in your customers WhatsApp — where they already talk to you.</p>
+          </div>
+          <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+            {waPlans.map((p,i) => (
+              <div key={i} style={{ background: p.pop?`linear-gradient(135deg,${C.card} 0%,rgba(124,108,240,.08) 100%)`:C.card, border: `1px solid ${p.pop?C.accent:C.border}`, borderRadius: 22, padding: 36, position: "relative", transition: "transform .3s", boxShadow: p.pop?`0 0 40px ${C.accentGlow}`:"none" }}
+                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-6px)"}
+                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
+                {p.pop && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", padding: "5px 20px", borderRadius: 20, background: C.gradBtn, fontSize: 11.5, color: "#fff", fontWeight: 800, whiteSpace: "nowrap" }}>⭐ MOST POPULAR</div>}
+                <div style={{ fontSize: 28, marginBottom: 8 }}>{p.icon}</div>
+                <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit',sans-serif" }}>{p.name}</h3>
+                <p style={{ fontSize: 13, color: C.sub, marginBottom: 24 }}>{p.desc}</p>
+                <div style={{ marginBottom: 8 }}><span style={{ fontSize: 13, color: C.dim, textDecoration: "line-through" }}>{p.orig}</span><span style={{ fontSize: 13, color: C.ok, marginLeft: 8, fontWeight: 700 }}>50% off</span></div>
+                <div style={{ marginBottom: 28 }}>
+                  <span style={{ fontSize: 38, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{p.setup}</span>
+                  <span style={{ fontSize: 14, color: C.sub }}> setup + </span>
+                  <span style={{ fontSize: 22, fontWeight: 800, color: C.accentSoft }}>{p.mo}</span>
+                  <span style={{ fontSize: 13, color: C.sub }}>/mo</span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
+                  {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
+                </div>
+                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started →</button>
+              </div>
+            ))}
           </div>
         </div>
       </section>
