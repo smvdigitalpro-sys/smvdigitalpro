@@ -259,7 +259,58 @@ export default function App() {
           <span style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 800, fontSize: 19, color: C.text }}>SMV <span style={{ color: C.accentSoft }}>DigitalPro</span></span>
         </div>
         <div className="dk" style={{ display: "flex", alignItems: "center", gap: 36 }}>
-          {["services","pricing","blog","contact"].map(l => <a key={l} onClick={() => go(l)} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.target.style.color = C.accentSoft} onMouseLeave={e => e.target.style.color = C.sub}>{l}</a>)}
+          {/* Services cu dropdown */}
+          <div style={{ position: "relative" }}
+            onMouseEnter={e => e.currentTarget.querySelector('.srv-drop').style.display = 'block'}
+            onMouseLeave={e => e.currentTarget.querySelector('.srv-drop').style.display = 'none'}>
+            <a style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s", display: "flex", alignItems: "center", gap: 4 }}
+              onMouseEnter={e => e.currentTarget.style.color = C.accentSoft}
+              onMouseLeave={e => e.currentTarget.style.color = C.sub}>
+              Services <span style={{ fontSize: 10 }}>▾</span>
+            </a>
+            <div className="srv-drop" style={{ display: "none", position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: 12, background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)`, zIndex: 999 }}>
+              {[
+                { label: "🤖 AI Chatbot", sub: "WhatsApp, Telegram & Web", id: "pricing" },
+                { label: "💬 WhatsApp Bot", sub: "Direct in their WhatsApp", id: "whatsapp" },
+                { label: "🌐 Website Creation", sub: "With AI chatbot built-in", id: "websites" },
+              ].map((item, i) => (
+                <div key={i} onClick={() => go(item.id)}
+                  style={{ padding: "10px 14px", borderRadius: 10, cursor: "pointer", transition: "background .2s" }}
+                  onMouseEnter={e => e.currentTarget.style.background = `rgba(124,108,240,.12)`}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                  <div style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>{item.label}</div>
+                  <div style={{ fontSize: 11.5, color: C.dim, marginTop: 2 }}>{item.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Rest of nav links */}
+          {/* Pricing dropdown */}
+          <div style={{ position: "relative" }}
+            onMouseEnter={e => e.currentTarget.querySelector('.price-drop').style.display = 'block'}
+            onMouseLeave={e => e.currentTarget.querySelector('.price-drop').style.display = 'none'}>
+            <a style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s", display: "flex", alignItems: "center", gap: 4 }}
+              onMouseEnter={e => e.currentTarget.style.color = C.accentSoft}
+              onMouseLeave={e => e.currentTarget.style.color = C.sub}>
+              Pricing <span style={{ fontSize: 10 }}>▾</span>
+            </a>
+            <div className="price-drop" style={{ display: "none", position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: 12, background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)`, zIndex: 999 }}>
+              {[
+                { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
+                { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
+                { label: "🌐 Website Plans", sub: "From $299 one-time", id: "websites" },
+              ].map((item, i) => (
+                <div key={i} onClick={() => go(item.id)}
+                  style={{ padding: "10px 14px", borderRadius: 10, cursor: "pointer", transition: "background .2s" }}
+                  onMouseEnter={e => e.currentTarget.style.background = `rgba(124,108,240,.12)`}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                  <div style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>{item.label}</div>
+                  <div style={{ fontSize: 11.5, color: C.dim, marginTop: 2 }}>{item.sub}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {["blog","contact"].map(l => <a key={l} onClick={() => go(l)} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.target.style.color = C.accentSoft} onMouseLeave={e => e.target.style.color = C.sub}>{l}</a>)}
           <button onClick={() => setChat(true)} style={{ padding: "11px 26px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 13.5, cursor: "pointer", boxShadow: `0 4px 20px ${C.accentGlow}`, transition: "transform .2s" }} onMouseEnter={e => e.target.style.transform = "translateY(-1px)"} onMouseLeave={e => e.target.style.transform = "translateY(0)"}>Get Free Demo →</button>
         </div>
         <button className="mb" onClick={() => setMob(!mob)} style={{ display: "none", background: "none", border: "none", color: C.text, fontSize: 24, cursor: "pointer", alignItems: "center", justifyContent: "center" }}>{mob ? "✕" : "☰"}</button>
@@ -381,7 +432,7 @@ export default function App() {
         </div>
       </section>
 
-      <section style={{ padding: "110px 32px", background: `linear-gradient(180deg,${C.bg} 0%,${C.bg2} 50%,${C.bg} 100%)` }}>
+      <section id="websites" style={{ padding: "110px 32px", background: `linear-gradient(180deg,${C.bg} 0%,${C.bg2} 50%,${C.bg} 100%)` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>Websites</p>
@@ -417,10 +468,7 @@ export default function App() {
         </div>
       </section>
 
-      <section style={{ padding: "110px 32px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>WhatsApp</p>
+      <section id="whatsapp" style={{ padding: "110px 32px" }}>
             <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>WhatsApp <span style={{ color: C.accentSoft }}>AI Bot</span></h2>
             <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Your AI assistant directly in your customers WhatsApp — where they already talk to you.</p>
           </div>
