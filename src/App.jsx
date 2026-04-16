@@ -338,7 +338,32 @@ export default function App() {
             <p style={{ fontSize: 16, color: C.dim, lineHeight: 1.65, marginBottom: 44, maxWidth: 520 }}>We build AI assistants that handle messages, book appointments, qualify leads, and follow up with customers — 24/7 on WhatsApp & Telegram.</p>
             <div style={{ display: "flex", gap: 18, flexWrap: "wrap", marginBottom: 60 }}>
               <button onClick={() => setChat(true)} style={{ padding: "21px 46px", borderRadius: 16, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 800, fontSize: 17, cursor: "pointer", boxShadow: `0 8px 40px ${C.accentGlow}`, transition: "transform .2s" }} onMouseEnter={e => e.target.style.transform = "translateY(-3px)"} onMouseLeave={e => e.target.style.transform = "translateY(0)"}>Get Your AI Demo →</button>
-              <button onClick={() => go("pricing")} style={{ padding: "21px 46px", borderRadius: 16, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.text, fontWeight: 700, fontSize: 17, cursor: "pointer", transition: "all .2s" }} onMouseEnter={e => { e.target.style.borderColor = C.accent; }} onMouseLeave={e => { e.target.style.borderColor = C.borderLight; }}>View Pricing</button>
+              <div style={{ position: "relative" }}
+                onMouseEnter={e => e.currentTarget.querySelector('.vp-drop').style.display = 'block'}
+                onMouseLeave={e => e.currentTarget.querySelector('.vp-drop').style.display = 'none'}>
+                <button style={{ padding: "21px 46px", borderRadius: 16, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.text, fontWeight: 700, fontSize: 17, cursor: "pointer", transition: "all .2s", display: "flex", alignItems: "center", gap: 8 }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; }}>
+                  View Pricing <span style={{ fontSize: 12 }}>▾</span>
+                </button>
+                <div className="vp-drop" style={{ display: "none", position: "absolute", top: "100%", left: 0, paddingTop: 8, zIndex: 999 }}>
+                  <div style={{ background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)` }}>
+                    {[
+                      { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
+                      { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
+                      { label: "🌐 Website Plans", sub: "From $299 one-time", id: "websites" },
+                    ].map((item, i) => (
+                      <div key={i} onClick={() => go(item.id)}
+                        style={{ padding: "10px 14px", borderRadius: 10, cursor: "pointer", transition: "background .2s" }}
+                        onMouseEnter={e => e.currentTarget.style.background = `rgba(124,108,240,.12)`}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                        <div style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>{item.label}</div>
+                        <div style={{ fontSize: 11.5, color: C.dim, marginTop: 2 }}>{item.sub}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="stg" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24, paddingTop: 32, borderTop: `1px solid ${C.border}` }}>
               {[["24/7","Always On"],["92%","Automated"],["<48h","Go Live"],["3x","More Bookings"]].map(([v,l],i) => <div key={i}><div style={{ fontSize: 30, fontWeight: 900, fontFamily: "'Outfit',sans-serif", color: C.accentSoft }}>{v}</div><div style={{ fontSize: 12, color: C.dim, marginTop: 4 }}>{l}</div></div>)}
