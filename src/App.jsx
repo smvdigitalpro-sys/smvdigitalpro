@@ -22,7 +22,7 @@ const services = [
 const plans = [
   { name: "Starter", setup: "$99", orig: "$200", mo: "$69", desc: "Start automating with zero risk", feats: ["AI chatbot on 1 channel", "500 messages/month", "Basic lead capture", "Email support", "48h setup"], cta: "Start Now" },
   { name: "Business", setup: "$199", orig: "$400", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory", "WhatsApp + Telegram", "Automated scheduling", "Lead qualification", "Personalized responses", "Priority support"], cta: "Start Free Trial", pop: true },
-  { name: "Premium", setup: "$349", orig: "$700", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included", "Voice AI (ElevenLabs)", "CRM integrations", "Monthly performance report", "Dedicated account manager", "Custom workflows"], cta: "Book a Call" },
+  { name: "Premium", setup: "$349", orig: "$700", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included", "Voice AI (ElevenLabs)", "CRM integrations", "Monthly performance report", "Dedicated account manager", "Custom workflows"], cta: "Contact pe Telegram" },
 ];
 
 const posts = [
@@ -265,7 +265,7 @@ export default function App() {
         <div className="hg" style={{ maxWidth: 1200, width: "100%", display: "flex", alignItems: "center", gap: 64, position: "relative" }}>
           <div style={{ flex: 1 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 50, background: C.okSoft, border: `1px solid rgba(52,211,153,.25)`, fontSize: 13, color: C.ok, marginBottom: 32, fontWeight: 600 }}>
-              <span style={{ width: 7, height: 7, background: C.ok, borderRadius: "50%", display: "inline-block" }} /> Only 3 discounted spots left this week
+              <span style={{ width: 7, height: 7, background: C.ok, borderRadius: "50%", display: "inline-block" }} /> Now accepting new clients — 48h setup
             </div>
             <h1 className="ht" style={{ fontSize: 58, fontWeight: 900, lineHeight: 1.06, marginBottom: 28, fontFamily: "'Outfit',sans-serif", letterSpacing: -1.5 }}>
               Get More Clients<br />With an <span style={{ background: "linear-gradient(135deg,#7c6cf0,#b4a9ff,#7c6cf0)", backgroundSize: "200% 200%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gs 4s ease-in-out infinite" }}>AI Employee</span><br />That Never Sleeps
@@ -277,7 +277,7 @@ export default function App() {
               <button onClick={() => go("pricing")} style={{ padding: "21px 46px", borderRadius: 16, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.text, fontWeight: 700, fontSize: 17, cursor: "pointer", transition: "all .2s" }} onMouseEnter={e => { e.target.style.borderColor = C.accent; }} onMouseLeave={e => { e.target.style.borderColor = C.borderLight; }}>View Pricing</button>
             </div>
             <div className="stg" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24, paddingTop: 32, borderTop: `1px solid ${C.border}` }}>
-              {[["24/7","Always On"],["92%","Automated"],["<2min","To Deploy"],["85%+","Profit Margin"]].map(([v,l],i) => <div key={i}><div style={{ fontSize: 30, fontWeight: 900, fontFamily: "'Outfit',sans-serif", color: C.accentSoft }}>{v}</div><div style={{ fontSize: 12, color: C.dim, marginTop: 4 }}>{l}</div></div>)}
+              {[["24/7","Always On"],["92%","Automated"],["<48h","Go Live"],["3x","More Bookings"]].map(([v,l],i) => <div key={i}><div style={{ fontSize: 30, fontWeight: 900, fontFamily: "'Outfit',sans-serif", color: C.accentSoft }}>{v}</div><div style={{ fontSize: 12, color: C.dim, marginTop: 4 }}>{l}</div></div>)}
             </div>
           </div>
           <div className="hv" style={{ flex: .7, display: "flex", justifyContent: "center" }}>
@@ -330,7 +330,7 @@ export default function App() {
                 </div>
                 <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 16, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div><span style={{ fontSize: 28, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{s.price}</span><span style={{ fontSize: 14, color: C.sub }}>{s.per}</span></div>
-                  <span style={{ color: C.accentSoft, fontSize: 13, fontWeight: 600 }}>Learn more →</span>
+                  <span onClick={() => setChat(true)} style={{ color: C.accentSoft, fontSize: 13, fontWeight: 600, cursor: "pointer" }}>Learn more →</span>
                 </div>
               </div>
             ))}
@@ -363,7 +363,7 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
-                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>{p.cta}</button>
+                <button onClick={() => p.name === "Premium" ? window.open("https://t.me/smvdigitalpro","_blank") : setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>{p.cta}</button>
               </div>
             ))}
           </div>
@@ -411,7 +411,7 @@ export default function App() {
                 <p style={{ fontSize: 14, color: C.sub, lineHeight: 1.6, marginBottom: 16 }}>{p.excerpt}</p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div style={{ display: "flex", gap: 14, fontSize: 12, color: C.dim }}><span>{p.date}</span><span>•</span><span>{p.read}</span></div>
-                  <span style={{ color: C.accentSoft, fontSize: 12, fontWeight: 600 }}>Read →</span>
+                  <span onClick={() => setChat(true)} style={{ color: C.accentSoft, fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Read →</span>
                 </div>
               </div>
             ))}
