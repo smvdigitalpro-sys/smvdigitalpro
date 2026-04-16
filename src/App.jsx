@@ -469,6 +469,9 @@ export default function App() {
       </section>
 
       <section id="whatsapp" style={{ padding: "110px 32px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>WhatsApp</p>
             <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>WhatsApp <span style={{ color: C.accentSoft }}>AI Bot</span></h2>
             <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Your AI assistant directly in your customers WhatsApp — where they already talk to you.</p>
           </div>
