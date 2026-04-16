@@ -26,9 +26,9 @@ const plans = [
 ];
 
 const webPlans = [
-  { name: "Landing Page", icon: "🥉", orig: "$598", price: "$299", mo: "$29", desc: "Perfect for a single, high-converting page", feats: ["1 page professional design", "AI chatbot integrated", "SEO optimized", "Free hosting", "Mobile friendly", "48h delivery"], result: "→ Fast & effective" },
-  { name: "Business Site", icon: "🥈", orig: "$998", price: "$499", mo: "$49", desc: "Complete online presence for your business", feats: ["5-7 pages custom design", "AI chatbot integrated", "Full SEO setup", "Contact forms", "Free hosting", "5 days delivery"], result: "→ Full presence", pop: true },
-  { name: "Full Website", icon: "🥇", orig: "$1,798", price: "$899", mo: "$99", desc: "Premium website built to scale", feats: ["10+ pages premium design", "Advanced AI chatbot", "SEO + Blog setup", "CRM integrations", "Free hosting", "10 days delivery"], result: "→ Scale fast" },
+  { name: "Landing Page", icon: "🚀", orig: "$598", price: "$299", mo: "$29", desc: "Perfect for a single, high-converting page", feats: ["1 page professional design", "AI chatbot integrated", "SEO optimized", "Free hosting", "Mobile friendly", "48h delivery"], result: "→ Fast & effective" },
+  { name: "Business Site", icon: "⭐", orig: "$998", price: "$499", mo: "$49", desc: "Complete online presence for your business", feats: ["5-7 pages custom design", "AI chatbot integrated", "Full SEO setup", "Contact forms", "Free hosting", "5 days delivery"], result: "→ Full presence", pop: true },
+  { name: "Full Website", icon: "👑", orig: "$1,798", price: "$899", mo: "$99", desc: "Premium website built to scale", feats: ["10+ pages premium design", "Advanced AI chatbot", "SEO + Blog setup", "CRM integrations", "Free hosting", "10 days delivery"], result: "→ Scale fast" },
 ];
 
 const waPlans = [
@@ -468,6 +468,46 @@ export default function App() {
         </div>
       </section>
 
+      <section id="whatsapp" style={{ padding: "110px 32px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>WhatsApp</p>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>WhatsApp <span style={{ color: C.accentSoft }}>AI Bot</span></h2>
+            <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Your AI assistant directly in your customers WhatsApp — where they already talk to you.</p>
+          </div>
+          <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+            {waPlans.map((p,i) => (
+              <div key={i} style={{ background: p.pop?`linear-gradient(135deg,${C.card} 0%,rgba(124,108,240,.08) 100%)`:C.card, border: `1px solid ${p.pop?C.accent:C.border}`, borderRadius: 22, padding: 36, position: "relative", transition: "transform .3s", boxShadow: p.pop?`0 0 40px ${C.accentGlow}`:"none" }}
+                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-6px)"}
+                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
+                {p.pop && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", padding: "5px 20px", borderRadius: 20, background: C.gradBtn, fontSize: 11.5, color: "#fff", fontWeight: 800, whiteSpace: "nowrap" }}>⭐ MOST POPULAR</div>}
+                <div style={{ fontSize: 28, marginBottom: 8 }}>{p.icon}</div>
+                <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit',sans-serif" }}>{p.name}</h3>
+                <p style={{ fontSize: 13, color: C.sub, marginBottom: 24 }}>{p.desc}</p>
+                <div style={{ marginBottom: 8 }}><span style={{ fontSize: 13, color: C.dim, textDecoration: "line-through" }}>{p.orig}</span><span style={{ fontSize: 13, color: C.ok, marginLeft: 8, fontWeight: 700 }}>50% off</span></div>
+                <div style={{ marginBottom: 28 }}>
+                  <span style={{ fontSize: 38, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{p.setup}</span>
+                  <span style={{ fontSize: 14, color: C.sub }}> setup + </span>
+                  <span style={{ fontSize: 22, fontWeight: 800, color: C.accentSoft }}>{p.mo}</span>
+                  <span style={{ fontSize: 13, color: C.sub }}>/mo</span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
+                  {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
+                </div>
+                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accentSoft; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; e.currentTarget.style.color = C.sub; }}>
+              💬 Have questions? Chat with our AI →
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section id="websites" style={{ padding: "110px 32px", background: `linear-gradient(180deg,${C.bg} 0%,${C.bg2} 50%,${C.bg} 100%)` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
@@ -498,46 +538,6 @@ export default function App() {
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
                 <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.price} →</button>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: "center", marginTop: 32 }}>
-            <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accentSoft; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; e.currentTarget.style.color = C.sub; }}>
-              💬 Have questions? Chat with our AI →
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="whatsapp" style={{ padding: "110px 32px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>WhatsApp</p>
-            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>WhatsApp <span style={{ color: C.accentSoft }}>AI Bot</span></h2>
-            <p style={{ color: C.sub, maxWidth: 480, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Your AI assistant directly in your customers WhatsApp — where they already talk to you.</p>
-          </div>
-          <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-            {waPlans.map((p,i) => (
-              <div key={i} style={{ background: p.pop?`linear-gradient(135deg,${C.card} 0%,rgba(124,108,240,.08) 100%)`:C.card, border: `1px solid ${p.pop?C.accent:C.border}`, borderRadius: 22, padding: 36, position: "relative", transition: "transform .3s", boxShadow: p.pop?`0 0 40px ${C.accentGlow}`:"none" }}
-                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-6px)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
-                {p.pop && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", padding: "5px 20px", borderRadius: 20, background: C.gradBtn, fontSize: 11.5, color: "#fff", fontWeight: 800, whiteSpace: "nowrap" }}>⭐ MOST POPULAR</div>}
-                <div style={{ fontSize: 28, marginBottom: 8 }}>{p.icon}</div>
-                <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit',sans-serif" }}>{p.name}</h3>
-                <p style={{ fontSize: 13, color: C.sub, marginBottom: 24 }}>{p.desc}</p>
-                <div style={{ marginBottom: 8 }}><span style={{ fontSize: 13, color: C.dim, textDecoration: "line-through" }}>{p.orig}</span><span style={{ fontSize: 13, color: C.ok, marginLeft: 8, fontWeight: 700 }}>50% off</span></div>
-                <div style={{ marginBottom: 28 }}>
-                  <span style={{ fontSize: 38, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{p.setup}</span>
-                  <span style={{ fontSize: 14, color: C.sub }}> setup + </span>
-                  <span style={{ fontSize: 22, fontWeight: 800, color: C.accentSoft }}>{p.mo}</span>
-                  <span style={{ fontSize: 13, color: C.sub }}>/mo</span>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
-                  {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
-                </div>
-                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
               </div>
             ))}
           </div>
