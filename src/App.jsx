@@ -268,7 +268,8 @@ export default function App() {
               onMouseLeave={e => e.currentTarget.style.color = C.sub}>
               Services <span style={{ fontSize: 10 }}>▾</span>
             </a>
-            <div className="srv-drop" style={{ display: "none", position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: 12, background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)`, zIndex: 999 }}>
+            <div className="srv-drop" style={{ display: "none", position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", paddingTop: 8, zIndex: 999 }}>
+              <div style={{ background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)` }}>
               {[
                 { label: "🤖 AI Chatbot", sub: "WhatsApp, Telegram & Web", id: "pricing" },
                 { label: "💬 WhatsApp Bot", sub: "Direct in their WhatsApp", id: "whatsapp" },
@@ -282,6 +283,7 @@ export default function App() {
                   <div style={{ fontSize: 11.5, color: C.dim, marginTop: 2 }}>{item.sub}</div>
                 </div>
               ))}
+              </div>
             </div>
           </div>
           {/* Rest of nav links */}
@@ -294,7 +296,8 @@ export default function App() {
               onMouseLeave={e => e.currentTarget.style.color = C.sub}>
               Pricing <span style={{ fontSize: 10 }}>▾</span>
             </a>
-            <div className="price-drop" style={{ display: "none", position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: 12, background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)`, zIndex: 999 }}>
+            <div className="price-drop" style={{ display: "none", position: "absolute", top: "100%", left: "50%", transform: "translateX(-50%)", paddingTop: 8, zIndex: 999 }}>
+              <div style={{ background: "rgba(17,17,25,.98)", border: `1px solid ${C.borderLight}`, borderRadius: 14, padding: "8px", minWidth: 220, backdropFilter: "blur(24px)", boxShadow: `0 16px 48px rgba(0,0,0,.5)` }}>
               {[
                 { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
                 { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
@@ -308,6 +311,7 @@ export default function App() {
                   <div style={{ fontSize: 11.5, color: C.dim, marginTop: 2 }}>{item.sub}</div>
                 </div>
               ))}
+              </div>
             </div>
           </div>
           {["blog","contact"].map(l => <a key={l} onClick={() => go(l)} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.target.style.color = C.accentSoft} onMouseLeave={e => e.target.style.color = C.sub}>{l}</a>)}
