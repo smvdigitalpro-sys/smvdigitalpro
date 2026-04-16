@@ -541,6 +541,13 @@ export default function App() {
               </div>
             ))}
           </div>
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accentSoft; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; e.currentTarget.style.color = C.sub; }}>
+              💬 Have questions? Chat with our AI →
+            </button>
+          </div>
         </div>
       </section>
 
