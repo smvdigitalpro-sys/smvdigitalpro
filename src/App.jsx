@@ -32,9 +32,9 @@ const webPlans = [
 ];
 
 const waPlans = [
-  { name: "WhatsApp Starter", icon: "🟢", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that dont want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
-  { name: "WhatsApp Business", icon: "🔵", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
-  { name: "WhatsApp Premium", icon: "🟣", orig: "$1,999", setup: "$999", mo: "$249", desc: "For serious businesses that want a complete system", feats: ["Everything in Business +", "Unlimited conversations", "Multi-language EN/ES/RO", "Full CRM integration", "Monthly performance report", "Voice AI optional (ElevenLabs)", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
+  { name: "WhatsApp Starter", icon: "💬", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that dont want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
+  { name: "WhatsApp Business", icon: "⚡", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
+  { name: "WhatsApp Premium", icon: "👑", orig: "$1,999", setup: "$999", mo: "$249", desc: "For serious businesses that want a complete system", feats: ["Everything in Business +", "Unlimited conversations", "Multi-language EN/ES/RO", "Full CRM integration", "Monthly performance report", "Voice AI optional (ElevenLabs)", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
 ];
 
 const posts = [
