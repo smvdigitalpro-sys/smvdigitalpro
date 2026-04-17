@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from "react-router-dom";
 
 const ANTHROPIC_API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY;
 
@@ -266,7 +267,363 @@ function Bot({ open, toggle }) {
   );
 }
 
+// ============================================================
+// BLOG DATA
+// ============================================================
+const blogPosts = [
+  {
+    slug: "why-every-small-business-needs-ai-assistant-2026",
+    title: "Why Every Small Business Needs an AI Assistant in 2026",
+    excerpt: "The businesses that adopt AI now will dominate their markets. Here's the data behind the shift.",
+    cat: "AI Trends",
+    date: "Apr 10, 2026",
+    read: "5 min",
+    ico: "📊",
+    content: `The business landscape is changing faster than ever. In 2026, customers expect instant responses — not in hours, not in minutes, but in seconds. The businesses that can deliver this win. The ones that can't, lose clients to competitors who do.
+
+Here's the reality: 78% of customers buy from the first business that responds to their inquiry. If you're missing calls, leaving WhatsApp messages unread overnight, or making clients wait for a reply — you're losing revenue every single day.
+
+**What AI Assistants Actually Do**
+
+An AI assistant isn't just a chatbot that answers FAQs. Modern AI — powered by Claude, GPT-4, and similar models — can:
+
+- Recognize returning customers by name and remember their preferences
+- Book appointments directly into your calendar without human intervention
+- Qualify leads by asking the right questions and filtering out time-wasters
+- Follow up automatically after 24 hours if a prospect went cold
+- Handle objections, explain pricing, and guide customers toward a purchase
+
+**The Numbers Don't Lie**
+
+Businesses using AI assistants report an average of 3x more bookings from the same traffic. Why? Because the AI is available at 2am when a potential client is browsing your site. It responds in under 3 seconds. It never has a bad day.
+
+One of our clients — a salon in Madrid — went from 15 appointments per week to 32 in under 60 days. They didn't change their marketing. They didn't hire anyone. They added an AI assistant.
+
+**The Cost of Waiting**
+
+Every month you wait is another month of missed opportunities. A human receptionist costs $2,500–$4,000/month in salary plus benefits. An AI assistant starts at $69/month and works 24/7.
+
+The question isn't whether you can afford AI. The question is whether you can afford to keep operating without it.
+
+**Getting Started**
+
+The good news: implementation is faster than you think. A basic AI chatbot can be live in 48 hours. It connects to your existing WhatsApp number, your website, or your Telegram — wherever your clients already contact you.
+
+If you're a salon, restaurant, clinic, gym, or any service business with repeat clients — an AI assistant will pay for itself in the first month.`
+  },
+  {
+    slug: "case-study-salon-doubled-bookings-with-ai",
+    title: "Case Study: How a Salon Doubled Bookings with AI",
+    excerpt: "From 15 to 32 appointments per week — without hiring anyone. A real implementation breakdown.",
+    cat: "Case Study",
+    date: "Apr 8, 2026",
+    read: "7 min",
+    ico: "📈",
+    content: `When Maria came to us, she was running a successful salon in Madrid with a serious problem: she was losing clients because she couldn't respond fast enough. Between cutting hair, managing staff, and running the business, there was no time to answer every WhatsApp message immediately.
+
+"I'd finish a client at 6pm and see 12 messages I missed during the day. Some of those people already booked somewhere else," she told us.
+
+**The Problem**
+
+Maria's salon had great reviews and loyal clients — but her booking process was entirely manual. Clients would WhatsApp her to book, she'd reply when she could, confirm availability, and manually add it to her calendar. The process worked, but it didn't scale.
+
+Peak hours — weekday evenings and Saturday mornings — were when most people wanted to book. That's also when Maria was busiest with actual clients.
+
+**The Solution**
+
+We built a WhatsApp AI assistant for Luna Beauty Salon in 3 days. The AI was trained on:
+
+- All services and pricing (haircut, color, manicure, facial, spa packages)
+- Available stylists and their specializations
+- Real-time calendar integration to check and confirm availability
+- Salon policies (cancellation, deposits, late arrivals)
+
+The AI could handle the entire booking process from first message to confirmed appointment — without Maria touching her phone.
+
+**Week 1 Results**
+
+The first week, the AI handled 47 conversations. Maria had to intervene in exactly 3 of them — all unusual requests the AI flagged for human review. The other 44 were handled start to finish automatically.
+
+Bookings that week: 24. Previous weekly average: 15.
+
+**Month 2 Results**
+
+By month two, the AI had learned the most common questions and was handling 95% of conversations independently. Maria was getting a daily summary email showing new bookings, cancellations, and any conversations that needed attention.
+
+Weekly bookings had stabilized at 30–34. Revenue was up 35%.
+
+"The AI knows my regulars by name. When Ana books, it already knows she always wants highlights with Maria, not the other stylists. Clients love that," Maria said.
+
+**What It Cost**
+
+Setup: $299 (one-time). Monthly: $129/month.
+
+At her average service price of €55, the additional 17 weekly bookings represent €935/week in additional revenue. The AI pays for itself every single day.
+
+**Key Lessons**
+
+1. Speed wins. The AI responds in under 3 seconds at any hour. Clients who messaged at 11pm got confirmed bookings instantly.
+2. Memory matters. Recognizing returning clients creates loyalty.
+3. Automation doesn't feel robotic. Good AI feels warm and personal.
+
+If you run a service business and your booking process is still manual, this case study is your roadmap.`
+  },
+  {
+    slug: "which-tasks-should-ai-handle-for-your-business",
+    title: "The 80% Rule: Which Tasks AI Should Handle for You",
+    excerpt: "Not everything should be automated. Here's a framework for deciding what to delegate to AI.",
+    cat: "Strategy",
+    date: "Apr 5, 2026",
+    read: "6 min",
+    ico: "⚙️",
+    content: `Every business owner I talk to asks the same question when they first consider AI: "What exactly can it do for me?" The answer is more nuanced than a simple list — because the best AI strategy isn't about automating everything. It's about automating the right things.
+
+I call this the 80% Rule: AI should handle 80% of your repetitive, predictable interactions so you can focus 100% of your energy on the 20% that actually needs a human.
+
+**What AI Handles Best**
+
+The tasks AI excels at share common characteristics: they're repetitive, they follow predictable patterns, and they don't require emotional judgment or creative problem-solving.
+
+*Answering FAQs*
+"What are your hours?" "Do you have parking?" "How much does X cost?" "Can I book for Saturday?" These questions have fixed answers. AI handles them instantly, 24/7, without fatigue.
+
+*Appointment Booking*
+Checking availability, confirming slots, sending reminders, handling rescheduling requests — this is pure process work. AI does it faster and more accurately than any human.
+
+*Lead Qualification*
+"Are you interested in X service?" "What's your budget?" "When are you looking to start?" AI can run through qualification questions, score leads, and only escalate genuine prospects to you.
+
+*Follow-up Sequences*
+If someone inquires but doesn't book, AI follows up at 24h, 48h, and 7 days with relevant messages. Most businesses lose leads simply because no one follows up. AI never forgets.
+
+*Order Confirmations and Updates*
+Status updates, confirmation messages, delivery notifications — all automatable.
+
+**What Humans Should Keep**
+
+Some interactions genuinely need a human touch:
+
+*Complex complaints*: When a client is upset about a real problem, they need to feel heard by a person. AI can acknowledge and escalate, but the resolution conversation should be human.
+
+*High-value negotiations*: Custom enterprise deals, large contracts, or anything where relationship and trust are the deciding factor — keep these human.
+
+*Creative consultation*: If your service involves creative judgment (design, strategy, complex advice), the actual consultation needs you.
+
+*Medical or legal nuance*: Any situation where incorrect information could cause harm needs human oversight.
+
+**How to Apply the 80% Rule**
+
+Step 1: List every customer interaction your business has in a week.
+Step 2: Mark each one as "predictable" or "requires judgment."
+Step 3: Automate everything in the predictable column.
+Step 4: Use the time saved to do more of the judgment work — or take on more clients.
+
+Most service businesses find that 70–85% of their customer interactions are predictable. That's 70–85% of their communication time that could be running on autopilot.
+
+**The Result**
+
+Businesses that apply this framework don't just save time — they grow faster. Because when you're not answering the same 10 questions for the hundredth time, you can focus on the work that actually moves the needle.
+
+Start with one area — usually booking or FAQ handling — and expand from there. Within 90 days, most of our clients have automated 60–80% of their routine communications.`
+  },
+  {
+    slug: "ai-voice-assistants-customer-service",
+    title: "AI Voice Assistants Are Coming for Customer Service",
+    excerpt: "Restaurants, clinics, and salons are replacing hold music with AI that actually helps.",
+    cat: "Industry News",
+    date: "Apr 2, 2026",
+    read: "4 min",
+    ico: "🎙️",
+    content: `For decades, calling a small business meant one of three things: someone picks up, you leave a voicemail no one checks, or you listen to hold music until you give up. In 2026, there's a fourth option — and it's rapidly becoming the norm.
+
+AI voice assistants powered by ElevenLabs and similar voice synthesis technology now sound indistinguishable from a real person on a phone call. They can answer, understand context, respond naturally, and take action — all in real time.
+
+**Why Voice Matters**
+
+Despite the rise of WhatsApp, Telegram, and messaging apps, phone calls remain the dominant contact method for certain demographics and industries. Medical clinics, legal offices, and restaurants still receive the majority of their bookings by phone.
+
+The problem: most small businesses can't afford a full-time receptionist, and part-time coverage means missed calls during peak hours. A missed call isn't just a lost booking — it's a client who called your competitor next.
+
+**What AI Voice Can Do Today**
+
+Modern AI receptionists handle the full call flow:
+
+- Answer within 2 rings with a natural greeting
+- Understand the caller's request (booking, inquiry, complaint, directions)
+- Check real-time availability and confirm appointments
+- Take messages with full context for human follow-up
+- Send the caller a confirmation SMS or WhatsApp automatically
+
+The caller rarely realizes they're speaking with AI. The conversation feels natural because the AI is trained specifically on your business, your services, and your tone.
+
+**Who's Adopting It**
+
+Early adopters are predictably the businesses that lose the most to missed calls: dental clinics, hair salons, restaurants, physiotherapy practices, and veterinary offices.
+
+A dental clinic we work with was missing an estimated 20% of incoming calls during peak hours. After implementing an AI receptionist, call answer rate went to 100% and monthly new patient bookings increased by 28%.
+
+**The Cost Equation**
+
+A human receptionist in the UK costs £24,000–£32,000 per year. An AI voice receptionist starts at $500/month — covering 24/7 availability, unlimited calls, and zero sick days.
+
+For businesses that rely on phone bookings, the ROI calculation is straightforward: how many calls per month do you miss, and what's each booking worth?
+
+**What's Next**
+
+Voice AI is improving faster than any other AI category. Within 18 months, AI receptionists will handle multi-language calls, complex complaint resolution, and proactive outbound calling for appointment reminders — all autonomously.
+
+The businesses that implement voice AI now will have a significant operational advantage. The technology works today. The only question is how long you'll wait to use it.`
+  },
+];
+
+// ============================================================
+// BLOG COMPONENTS
+// ============================================================
+function BlogList() {
+  const navigate = useNavigate();
+  const C2 = {
+    bg: "#06060b", bg2: "#0c0c14", card: "#111119", card2: "#16161f",
+    accent: "#7c6cf0", accentSoft: "#b4a9ff", accentGlow: "rgba(124,108,240,0.25)",
+    gold: "#e8c547", text: "#f0f0f8", sub: "#9494b0", dim: "#5a5a72",
+    border: "#1c1c2c", borderLight: "#24243a", ok: "#34d399",
+    grad: "linear-gradient(135deg, #7c6cf0 0%, #b4a9ff 100%)",
+    gradBtn: "linear-gradient(135deg, #7c6cf0 0%, #9b8cff 50%, #7c6cf0 100%)",
+  };
+  return (
+    <div style={{ background: C2.bg, color: C2.text, minHeight: "100vh", fontFamily: "'DM Sans',sans-serif" }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');*{margin:0;padding:0;box-sizing:border-box}`}</style>
+      <nav style={{ padding: "0 32px", height: 74, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(6,6,11,.94)", backdropFilter: "blur(24px)", borderBottom: `1px solid ${C2.border}`, position: "sticky", top: 0, zIndex: 100 }}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <div style={{ width: 38, height: 38, borderRadius: 11, background: C2.grad, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#fff", fontSize: 17, fontFamily: "'Outfit',sans-serif" }}>S</div>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 800, fontSize: 19, color: C2.text }}>SMV <span style={{ color: C2.accentSoft }}>DigitalPro</span></span>
+        </Link>
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          <Link to="/" style={{ color: C2.sub, textDecoration: "none", fontSize: 14, fontWeight: 500 }}>← Back to site</Link>
+          <button onClick={() => window.location.href="/"} style={{ padding: "10px 22px", borderRadius: 12, background: C2.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>Get Free Demo →</button>
+        </div>
+      </nav>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 32px" }}>
+        <div style={{ textAlign: "center", marginBottom: 72 }}>
+          <p style={{ fontSize: 12, color: C2.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>Blog</p>
+          <h1 style={{ fontSize: 52, fontWeight: 900, fontFamily: "'Outfit',sans-serif", letterSpacing: -1, marginBottom: 18 }}>AI Business <span style={{ color: C2.accentSoft }}>Insights</span></h1>
+          <p style={{ color: C2.sub, fontSize: 18, maxWidth: 480, margin: "0 auto" }}>Practical guides on using AI to grow your business.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))", gap: 28 }}>
+          {blogPosts.map((p, i) => (
+            <div key={i} onClick={() => navigate("/blog/" + p.slug)}
+              style={{ background: C2.card, border: `1px solid ${C2.border}`, borderRadius: 20, padding: 36, cursor: "pointer", transition: "all .3s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C2.accent; e.currentTarget.style.transform = "translateY(-4px)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C2.border; e.currentTarget.style.transform = "translateY(0)"; }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+                <span style={{ padding: "5px 14px", borderRadius: 8, background: "rgba(124,108,240,.08)", color: C2.accentSoft, fontSize: 11.5, fontWeight: 700 }}>{p.cat}</span>
+                <span style={{ fontSize: 32 }}>{p.ico}</span>
+              </div>
+              <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 12, fontFamily: "'Outfit',sans-serif", lineHeight: 1.3 }}>{p.title}</h2>
+              <p style={{ fontSize: 15, color: C2.sub, lineHeight: 1.6, marginBottom: 24 }}>{p.excerpt}</p>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ display: "flex", gap: 14, fontSize: 12, color: C2.dim }}><span>{p.date}</span><span>•</span><span>{p.read} read</span></div>
+                <span style={{ color: C2.accentSoft, fontSize: 13, fontWeight: 700 }}>Read article →</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BlogPost() {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const post = blogPosts.find(p => p.slug === slug);
+  const C2 = {
+    bg: "#06060b", bg2: "#0c0c14", card: "#111119", card2: "#16161f",
+    accent: "#7c6cf0", accentSoft: "#b4a9ff", accentGlow: "rgba(124,108,240,0.25)",
+    text: "#f0f0f8", sub: "#9494b0", dim: "#5a5a72",
+    border: "#1c1c2c", borderLight: "#24243a", ok: "#34d399",
+    grad: "linear-gradient(135deg, #7c6cf0 0%, #b4a9ff 100%)",
+    gradBtn: "linear-gradient(135deg, #7c6cf0 0%, #9b8cff 50%, #7c6cf0 100%)",
+  };
+  useEffect(() => {
+    if (post) { document.title = post.title + " | SMV DigitalPro"; }
+    window.scrollTo(0, 0);
+  }, [post]);
+  if (!post) return <div style={{ background: C2.bg, color: C2.text, minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ textAlign: "center" }}><h2>Article not found</h2><button onClick={() => navigate("/blog")} style={{ marginTop: 20, padding: "12px 24px", borderRadius: 12, background: C2.gradBtn, border: "none", color: "#fff", cursor: "pointer" }}>Back to Blog</button></div></div>;
+  const paragraphs = post.content.split("\n\n");
+  return (
+    <div style={{ background: C2.bg, color: C2.text, minHeight: "100vh", fontFamily: "'DM Sans',sans-serif" }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');*{margin:0;padding:0;box-sizing:border-box}`}</style>
+      <nav style={{ padding: "0 32px", height: 74, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(6,6,11,.94)", backdropFilter: "blur(24px)", borderBottom: `1px solid ${C2.border}`, position: "sticky", top: 0, zIndex: 100 }}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <div style={{ width: 38, height: 38, borderRadius: 11, background: C2.grad, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#fff", fontSize: 17 }}>S</div>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 800, fontSize: 19, color: C2.text }}>SMV <span style={{ color: C2.accentSoft }}>DigitalPro</span></span>
+        </Link>
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          <Link to="/blog" style={{ color: C2.sub, textDecoration: "none", fontSize: 14, fontWeight: 500 }}>← All articles</Link>
+          <button onClick={() => window.location.href="/"} style={{ padding: "10px 22px", borderRadius: 12, background: C2.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>Get Free Demo →</button>
+        </div>
+      </nav>
+      <div style={{ maxWidth: 740, margin: "0 auto", padding: "72px 32px 100px" }}>
+        <div style={{ marginBottom: 32 }}>
+          <span style={{ padding: "5px 14px", borderRadius: 8, background: "rgba(124,108,240,.08)", color: C2.accentSoft, fontSize: 12, fontWeight: 700 }}>{post.cat}</span>
+        </div>
+        <h1 style={{ fontSize: 42, fontWeight: 900, fontFamily: "'Outfit',sans-serif", lineHeight: 1.15, marginBottom: 20, letterSpacing: -.8 }}>{post.title}</h1>
+        <div style={{ display: "flex", gap: 20, fontSize: 13, color: C2.dim, marginBottom: 48, paddingBottom: 32, borderBottom: `1px solid ${C2.border}` }}>
+          <span>{post.date}</span><span>•</span><span>{post.read} read</span><span>•</span><span>SMV DigitalPro</span>
+        </div>
+        <div style={{ fontSize: 17, lineHeight: 1.8, color: C2.sub }}>
+          {paragraphs.map((para, i) => {
+            if (para.startsWith("**") && para.endsWith("**")) {
+              return <h2 key={i} style={{ fontSize: 24, fontWeight: 800, color: C2.text, fontFamily: "'Outfit',sans-serif", margin: "36px 0 16px" }}>{para.replace(/\*\*/g, "")}</h2>;
+            }
+            if (para.startsWith("*") && para.endsWith("*")) {
+              return <h3 key={i} style={{ fontSize: 18, fontWeight: 700, color: C2.accentSoft, margin: "24px 0 10px" }}>{para.replace(/\*/g, "")}</h3>;
+            }
+            if (para.startsWith("- ")) {
+              const items = para.split("\n").filter(l => l.startsWith("- "));
+              return <ul key={i} style={{ margin: "16px 0", paddingLeft: 24 }}>{items.map((it, j) => <li key={j} style={{ marginBottom: 8, color: C2.sub }}>{it.replace("- ", "")}</li>)}</ul>;
+            }
+            return <p key={i} style={{ marginBottom: 22 }}>{para}</p>;
+          })}
+        </div>
+        <div style={{ marginTop: 64, padding: 36, background: C2.card, border: `1px solid ${C2.borderLight}`, borderRadius: 20, textAlign: "center" }}>
+          <div style={{ fontSize: 36, marginBottom: 14 }}>🚀</div>
+          <h3 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 22, fontWeight: 800, marginBottom: 12 }}>Ready to automate your business?</h3>
+          <p style={{ color: C2.sub, fontSize: 15, marginBottom: 24 }}>Get a free demo — live in 48 hours.</p>
+          <button onClick={() => { navigate("/"); }} style={{ padding: "16px 36px", borderRadius: 14, background: C2.gradBtn, border: "none", color: "#fff", fontWeight: 800, fontSize: 15, cursor: "pointer" }}>Get Free Demo →</button>
+        </div>
+        <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          {blogPosts.filter(p => p.slug !== slug).slice(0, 2).map((p, i) => (
+            <div key={i} onClick={() => navigate("/blog/" + p.slug)}
+              style={{ background: C2.card, border: `1px solid ${C2.border}`, borderRadius: 16, padding: 22, cursor: "pointer", transition: "all .3s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C2.accent; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C2.border; }}>
+              <span style={{ fontSize: 11, color: C2.accentSoft, fontWeight: 700 }}>{p.cat}</span>
+              <h4 style={{ fontSize: 14, fontWeight: 700, marginTop: 8, lineHeight: 1.4 }}>{p.title}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// MAIN APP WITH ROUTER
+// ============================================================
 export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppInner />} />
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function AppInner() {
   const [chat, setChat] = useState(false);
   const [sc, setSc] = useState(false);
   const [mob, setMob] = useState(false);
@@ -388,7 +745,8 @@ export default function App() {
               </div>
             </div>
           </div>
-          {["blog","contact"].map(l => <a key={l} onClick={() => go(l)} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.target.style.color = C.accentSoft} onMouseLeave={e => e.target.style.color = C.sub}>{l}</a>)}
+          <a onClick={() => window.location.href="/blog"} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.currentTarget.style.color = C.accentSoft} onMouseLeave={e => e.currentTarget.style.color = C.sub}>Blog</a>
+          <a onClick={() => go("contact")} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.currentTarget.style.color = C.accentSoft} onMouseLeave={e => e.currentTarget.style.color = C.sub}>Contact</a>
           <button onClick={() => setCartOpen(true)} style={{ position: "relative", padding: "11px 18px", borderRadius: 12, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.text, fontWeight: 700, fontSize: 13.5, cursor: "pointer", transition: "all .2s" }} onMouseEnter={e => e.currentTarget.style.borderColor = C.accent} onMouseLeave={e => e.currentTarget.style.borderColor = C.borderLight}>
             🛒 Cart {cartItems.length > 0 && <span style={{ position: "absolute", top: -8, right: -8, background: C.accent, color: "#fff", borderRadius: "50%", width: 20, height: 20, fontSize: 11, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center" }}>{cartItems.length}</span>}
           </button>
@@ -409,7 +767,8 @@ export default function App() {
             </div>
           ))}
           <div style={{ height: 1, background: C.border, margin: "8px 0" }} />
-          {["blog","contact"].map(l => <a key={l} onClick={() => { go(l); setMob(false); }} style={{ color: C.text, textDecoration: "none", fontSize: 18, fontWeight: 600, cursor: "pointer", textTransform: "capitalize", padding: "4px 0" }}>{l}</a>)}
+          <a onClick={() => window.location.href="/blog"} style={{ color: C.text, textDecoration: "none", fontSize: 18, fontWeight: 600, cursor: "pointer", textTransform: "capitalize", padding: "4px 0" }}>Blog</a>
+          <a onClick={() => { go("contact"); setMob(false); }} style={{ color: C.text, textDecoration: "none", fontSize: 18, fontWeight: 600, cursor: "pointer", textTransform: "capitalize", padding: "4px 0" }}>Contact</a>
           <button onClick={() => { setChat(true); setMob(false); }} style={{ padding: "14px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>Get Free Demo →</button>
         </div>}
       </nav>
@@ -747,7 +1106,7 @@ export default function App() {
                 <p style={{ fontSize: 14, color: C.sub, lineHeight: 1.6, marginBottom: 16 }}>{p.excerpt}</p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div style={{ display: "flex", gap: 14, fontSize: 12, color: C.dim }}><span>{p.date}</span><span>•</span><span>{p.read}</span></div>
-                  <span onClick={() => setChat(true)} style={{ color: C.accentSoft, fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Read →</span>
+                  <span onClick={() => window.location.href="/blog/"+p.slug} style={{ color: C.accentSoft, fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Read →</span>
                 </div>
               </div>
             ))}
