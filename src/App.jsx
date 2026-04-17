@@ -68,20 +68,37 @@ const reviews = [
   { text: "My AI assistant drafts better emails than I do, monitors my competitors daily, and finds me freelance opportunities I'd never have seen. It's like having a genius intern.", who: "Ana R.", role: "Consultant, Bucharest" },
 ];
 
-const SALES_SYSTEM = `You are the SMV AI Advisor, a friendly and professional AI sales assistant for SMV DigitalPro — an AI automation agency that builds chatbots, automations, and AI-powered websites for small businesses.
+const SALES_SYSTEM = `You are the SMV AI Advisor, a friendly and professional AI sales assistant for SMV DigitalPro — an AI automation agency that builds AI chatbots, WhatsApp bots, AI receptionists, and websites for small businesses.
 
 Your goal: understand the visitor's business and guide them toward booking a free consultation.
 
-Services:
-- AI Chatbot (WhatsApp & Telegram): Starter $199 setup + $69/mo, Business $299 setup + $129/mo, Premium $499 setup + $199/mo
-- Revenue-Ready Websites: Landing Page $299, Business Site $499, Full Website $899 (optional maintenance +$29-99/mo)
-- AI Virtual Employee: custom quote
-- Business Automations: custom quote
+Services & Pricing:
+
+AI Chatbot (website, Telegram or WhatsApp):
+- Starter: $199 setup + $69/mo — FAQs, lead capture, 1 channel, 48h setup
+- Business: $299 setup + $129/mo — memory, WhatsApp + Telegram, appointment booking
+- Premium: $499 setup + $199/mo — all channels, Voice AI, CRM integration
+
+WhatsApp Bot:
+- Starter: $399 setup + $99/mo — 24/7 WhatsApp, auto-replies, appointment confirmation
+- Business: $699 setup + $149/mo — memory, lead qualification, auto follow-up
+- Premium: $999 setup + $249/mo — unlimited conversations, CRM, multi-language, Voice AI
+
+AI Receptionist (answers phone calls with human-like voice):
+- Voice: $300 setup + $500/mo — calls answered 24/7, auto appointment booking, calendar sync
+- Complete: $450 setup + $800/mo — Voice + WhatsApp Bot, SMS reminders, lead qualification
+- Full Front Desk: $600 setup + $1,000/mo — everything + website chatbot, CRM, weekly reports
+
+Revenue-Ready Websites:
+- Landing Page: $299 setup + $149/mo (with plan) or $598 one-time
+- Business Site: $499 setup + $199/mo (with plan) or $998 one-time
+- Full Website: $899 setup + $299/mo (with plan) or $1,798 one-time
+- All plans include AI chatbot, hosting, domain, and monthly maintenance
 
 Rules:
 - Keep responses SHORT (max 3-4 lines), NO markdown formatting, NO asterisks, NO bold text
 - Be warm, confident, direct
-- Ask one question at a time
+- Ask one question at a time to understand their business type and main problem
 - When ready, collect name, email, WhatsApp for free consultation
 - Contact: hello@smvdigitalpro.com | Telegram: @smvdigitalpro`;
 
@@ -254,8 +271,44 @@ export default function App() {
   const [sc, setSc] = useState(false);
   const [mob, setMob] = useState(false);
   const [webTab, setWebTab] = useState(0);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [checkoutForm, setCheckoutForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [checkoutSent, setCheckoutSent] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
   useEffect(() => { const h = () => setSc(window.scrollY > 60); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
   const go = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMob(false); };
+
+  const addToCart = (item) => {
+    setCartItems(prev => {
+      const exists = prev.find(i => i.id === item.id);
+      if (exists) return prev;
+      return [...prev, item];
+    });
+    setCartOpen(true);
+  };
+
+  const removeFromCart = (id) => setCartItems(prev => prev.filter(i => i.id !== id));
+  const cartTotal = cartItems.reduce((sum, i) => sum + i.setupNum, 0);
+
+  const submitCheckout = async () => {
+    if (!checkoutForm.name || !checkoutForm.email) return;
+    setCheckoutLoading(true);
+    const orderSummary = cartItems.map(i => i.name + ": " + i.setup + " setup" + (i.mo ? " + " + i.mo + "/mo" : "")).join("\n");
+    const body = "New Order from SMV DigitalPro!\n\nName: " + checkoutForm.name + "\nEmail: " + checkoutForm.email + "\nPhone/WhatsApp: " + checkoutForm.phone + "\n\nOrder:\n" + orderSummary + "\n\nTotal Setup: $" + cartTotal + "\n\nMessage: " + checkoutForm.message;
+    try {
+      await fetch("https://formsubmit.co/ajax/hello@smvdigitalpro.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ name: checkoutForm.name, email: checkoutForm.email, message: body, _subject: "New Order — $" + cartTotal + " — SMV DigitalPro" }),
+      });
+    } catch {}
+    setCheckoutLoading(false);
+    setCheckoutSent(true);
+    setCartItems([]);
+  };
 
   return (
     <div style={{ background: C.bg, color: C.text, minHeight: "100vh", fontFamily: "'DM Sans',sans-serif", overflowX: "hidden" }}>
@@ -336,6 +389,9 @@ export default function App() {
             </div>
           </div>
           {["blog","contact"].map(l => <a key={l} onClick={() => go(l)} style={{ color: C.sub, textDecoration: "none", fontSize: 14.5, fontWeight: 500, cursor: "pointer", textTransform: "capitalize", transition: "color .2s" }} onMouseEnter={e => e.target.style.color = C.accentSoft} onMouseLeave={e => e.target.style.color = C.sub}>{l}</a>)}
+          <button onClick={() => setCartOpen(true)} style={{ position: "relative", padding: "11px 18px", borderRadius: 12, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.text, fontWeight: 700, fontSize: 13.5, cursor: "pointer", transition: "all .2s" }} onMouseEnter={e => e.currentTarget.style.borderColor = C.accent} onMouseLeave={e => e.currentTarget.style.borderColor = C.borderLight}>
+            🛒 Cart {cartItems.length > 0 && <span style={{ position: "absolute", top: -8, right: -8, background: C.accent, color: "#fff", borderRadius: "50%", width: 20, height: 20, fontSize: 11, fontWeight: 900, display: "flex", alignItems: "center", justifyContent: "center" }}>{cartItems.length}</span>}
+          </button>
           <button onClick={() => setChat(true)} style={{ padding: "11px 26px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 13.5, cursor: "pointer", boxShadow: `0 4px 20px ${C.accentGlow}`, transition: "transform .2s" }} onMouseEnter={e => e.target.style.transform = "translateY(-1px)"} onMouseLeave={e => e.target.style.transform = "translateY(0)"}>Get Free Demo →</button>
         </div>
         <button className="mb" onClick={() => setMob(!mob)} style={{ display: "none", background: "none", border: "none", color: C.text, fontSize: 24, cursor: "pointer", alignItems: "center", justifyContent: "center" }}>{mob ? "✕" : "☰"}</button>
@@ -486,7 +542,10 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
-                <button onClick={() => p.name === "Premium" ? window.open("https://t.me/smvdigitalpro","_blank") : setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>{p.cta}</button>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <button onClick={() => addToCart({ id: "chatbot-"+p.name, name: "AI Chatbot "+p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
+                  <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
+                </div>
               </div>
             ))}
           </div>
@@ -529,7 +588,10 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
-                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <button onClick={() => addToCart({ id: "wa-"+p.name, name: p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
+                  <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
+                </div>
               </div>
             ))}
           </div>
@@ -572,7 +634,10 @@ export default function App() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
-                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <button onClick={() => addToCart({ id: "rec-"+p.name, name: p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
+                  <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
+                </div>
               </div>
             ))}
           </div>
@@ -626,7 +691,10 @@ export default function App() {
                   <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
                     {plan.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: f.startsWith("⚠️") ? C.dim : C.sub }}><span style={{ color: f.startsWith("✅") ? C.ok : f.startsWith("⚠️") ? C.dim : C.ok }}>{ f.startsWith("✅") || f.startsWith("⚠️") ? "" : "✓"}</span>{f}</div>)}
                   </div>
-                  <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {plan.price} →</button>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    <button onClick={() => addToCart({ id: "web-"+p.name+webTab, name: p.name+(webTab===1?" (With Plan)":""), setup: plan.price, mo: webTab===1?plan.mo:null, setupNum: parseInt(plan.price.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {plan.price}</button>
+                    <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
+                  </div>
                 </div>
               );
             })}
@@ -723,6 +791,113 @@ export default function App() {
       </footer>
 
       <Bot open={chat} toggle={() => setChat(!chat)} />
+
+      {/* Cart Sidebar */}
+      {cartOpen && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 10000 }}>
+          <div onClick={() => setCartOpen(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.6)", backdropFilter: "blur(4px)" }} />
+          <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 420, maxWidth: "100vw", background: C.card, borderLeft: `1px solid ${C.borderLight}`, display: "flex", flexDirection: "column", animation: "su .3s ease-out" }}>
+            <div style={{ padding: "24px 28px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h3 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 20, fontWeight: 800 }}>🛒 Your Order ({cartItems.length})</h3>
+              <button onClick={() => setCartOpen(false)} style={{ background: "none", border: "none", color: C.sub, fontSize: 22, cursor: "pointer" }}>✕</button>
+            </div>
+            <div style={{ flex: 1, overflowY: "auto", padding: "20px 28px" }}>
+              {cartItems.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "60px 0" }}>
+                  <div style={{ fontSize: 48, marginBottom: 16 }}>🛒</div>
+                  <p style={{ color: C.sub }}>Your cart is empty</p>
+                  <button onClick={() => setCartOpen(false)} style={{ marginTop: 20, padding: "12px 24px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, cursor: "pointer" }}>Browse Services</button>
+                </div>
+              ) : (
+                <>
+                  {cartItems.map((item, i) => (
+                    <div key={i} style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 16, padding: "18px 20px", marginBottom: 14 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                        <div>
+                          <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 6 }}>{item.name}</div>
+                          <div style={{ fontSize: 13, color: C.accentSoft, fontWeight: 600 }}>{item.setup} setup{item.mo ? ` + ${item.mo}/mo` : ""}</div>
+                        </div>
+                        <button onClick={() => removeFromCart(item.id)} style={{ background: "none", border: "none", color: C.dim, fontSize: 18, cursor: "pointer", padding: "0 4px" }}>✕</button>
+                      </div>
+                    </div>
+                  ))}
+                  <div style={{ background: C.bg2, border: `1px solid ${C.borderLight}`, borderRadius: 16, padding: "18px 20px", marginTop: 8 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 15, fontWeight: 700 }}>
+                      <span>Setup Total</span>
+                      <span style={{ color: C.accentSoft }}>${cartTotal}</span>
+                    </div>
+                    <div style={{ fontSize: 12, color: C.dim, marginTop: 6 }}>+ monthly fees apply per service</div>
+                  </div>
+                </>
+              )}
+            </div>
+            {cartItems.length > 0 && (
+              <div style={{ padding: "20px 28px", borderTop: `1px solid ${C.border}` }}>
+                <button onClick={() => { setCartOpen(false); setCheckoutOpen(true); setCheckoutSent(false); }} style={{ width: "100%", padding: "18px", borderRadius: 14, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 800, fontSize: 16, cursor: "pointer", boxShadow: `0 6px 24px ${C.accentGlow}` }}>Proceed to Checkout →</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Checkout Modal */}
+      {checkoutOpen && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 10001, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+          <div onClick={() => setCheckoutOpen(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,.7)", backdropFilter: "blur(6px)" }} />
+          <div style={{ position: "relative", width: "100%", maxWidth: 520, background: C.card, border: `1px solid ${C.borderLight}`, borderRadius: 24, padding: "40px 44px", animation: "su .3s ease-out", maxHeight: "90vh", overflowY: "auto" }}>
+            {checkoutSent ? (
+              <div style={{ textAlign: "center", padding: "20px 0" }}>
+                <div style={{ fontSize: 56, marginBottom: 20 }}>🎉</div>
+                <h3 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 26, fontWeight: 900, marginBottom: 14 }}>Order Received!</h3>
+                <p style={{ color: C.sub, lineHeight: 1.6, marginBottom: 28 }}>We'll contact you within 24 hours to confirm details and start setup.</p>
+                <button onClick={() => { setCheckoutOpen(false); setCheckoutSent(false); }} style={{ padding: "14px 32px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, cursor: "pointer" }}>Close</button>
+              </div>
+            ) : (
+              <>
+                <button onClick={() => setCheckoutOpen(false)} style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", color: C.sub, fontSize: 22, cursor: "pointer" }}>✕</button>
+                <h3 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 24, fontWeight: 900, marginBottom: 6 }}>Complete Your Order</h3>
+                <p style={{ color: C.sub, fontSize: 14, marginBottom: 28 }}>We'll reach out within 24h to confirm and start setup.</p>
+                <div style={{ background: C.bg2, borderRadius: 14, padding: "16px 20px", marginBottom: 24 }}>
+                  {cartItems.map((item, i) => (
+                    <div key={i} style={{ display: "flex", justifyContent: "space-between", fontSize: 14, paddingBottom: i < cartItems.length-1 ? 10 : 0, marginBottom: i < cartItems.length-1 ? 10 : 0, borderBottom: i < cartItems.length-1 ? `1px solid ${C.border}` : "none" }}>
+                      <span style={{ color: C.sub }}>{item.name}</span>
+                      <span style={{ fontWeight: 700, color: C.accentSoft }}>{item.setup}{item.mo ? ` + ${item.mo}/mo` : ""}</span>
+                    </div>
+                  ))}
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: 15, fontWeight: 800, marginTop: 14, paddingTop: 14, borderTop: `1px solid ${C.borderLight}` }}>
+                    <span>Setup Total</span><span style={{ color: C.accentSoft }}>${cartTotal}</span>
+                  </div>
+                </div>
+                {[
+                  { key: "name", label: "Full Name *", placeholder: "John Smith", type: "text" },
+                  { key: "email", label: "Email Address *", placeholder: "john@business.com", type: "email" },
+                  { key: "phone", label: "WhatsApp / Phone", placeholder: "+1 234 567 8900", type: "text" },
+                ].map(f => (
+                  <div key={f.key} style={{ marginBottom: 16 }}>
+                    <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: C.sub, marginBottom: 6 }}>{f.label}</label>
+                    <input type={f.type} placeholder={f.placeholder} value={checkoutForm[f.key]}
+                      onChange={e => setCheckoutForm(p => ({ ...p, [f.key]: e.target.value }))}
+                      style={{ width: "100%", padding: "14px 16px", borderRadius: 12, border: `1.5px solid ${C.border}`, background: C.bg, color: C.text, fontSize: 14, outline: "none" }}
+                      onFocus={e => e.target.style.borderColor = C.accent} onBlur={e => e.target.style.borderColor = C.border} />
+                  </div>
+                ))}
+                <div style={{ marginBottom: 24 }}>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: C.sub, marginBottom: 6 }}>Tell us about your business (optional)</label>
+                  <textarea placeholder="e.g. I run a salon in London, 50 clients/week..." value={checkoutForm.message}
+                    onChange={e => setCheckoutForm(p => ({ ...p, message: e.target.value }))} rows={3}
+                    style={{ width: "100%", padding: "14px 16px", borderRadius: 12, border: `1.5px solid ${C.border}`, background: C.bg, color: C.text, fontSize: 14, outline: "none", resize: "vertical" }}
+                    onFocus={e => e.target.style.borderColor = C.accent} onBlur={e => e.target.style.borderColor = C.border} />
+                </div>
+                <button onClick={submitCheckout} disabled={checkoutLoading || !checkoutForm.name || !checkoutForm.email}
+                  style={{ width: "100%", padding: "18px", borderRadius: 14, background: (!checkoutForm.name || !checkoutForm.email) ? C.dim : C.gradBtn, border: "none", color: "#fff", fontWeight: 800, fontSize: 16, cursor: (!checkoutForm.name || !checkoutForm.email) ? "not-allowed" : "pointer", boxShadow: `0 6px 24px ${C.accentGlow}`, transition: "all .2s" }}>
+                  {checkoutLoading ? "Sending..." : "Send My Order →"}
+                </button>
+                <p style={{ fontSize: 12, color: C.dim, textAlign: "center", marginTop: 14 }}>🔒 No payment now. We'll invoice you after confirming details.</p>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
