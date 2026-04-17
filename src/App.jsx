@@ -1094,8 +1094,8 @@ function AppInner() {
             <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>AI News & <span style={{ color: C.accentSoft }}>Strategy</span></h2>
           </div>
           <div className="bg" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 24 }}>
-            {posts.map((p,i) => (
-              <div key={i} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 18, padding: 32, cursor: "pointer", transition: "all .35s" }}
+            {blogPosts.map((p,i) => (
+              <div key={i} onClick={() => window.location.href="/blog/"+p.slug} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 18, padding: 32, cursor: "pointer", transition: "all .35s" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.transform = "translateY(-3px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = "translateY(0)"; }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
@@ -1106,7 +1106,7 @@ function AppInner() {
                 <p style={{ fontSize: 14, color: C.sub, lineHeight: 1.6, marginBottom: 16 }}>{p.excerpt}</p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div style={{ display: "flex", gap: 14, fontSize: 12, color: C.dim }}><span>{p.date}</span><span>•</span><span>{p.read}</span></div>
-                  <span onClick={() => window.location.href="/blog/"+p.slug} style={{ color: C.accentSoft, fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Read →</span>
+                  <span style={{ color: C.accentSoft, fontSize: 12, fontWeight: 600, cursor: "pointer" }}>Read →</span>
                 </div>
               </div>
             ))}
