@@ -31,6 +31,12 @@ const webPlans = [
   { name: "Full Website", icon: "👑", orig: "$1,798", price: "$899", mo: "$99", desc: "Premium website built to scale", feats: ["10+ pages premium design", "Advanced AI chatbot", "SEO + Blog setup", "CRM integrations", "Free hosting", "10 days delivery"], result: "→ Scale fast" },
 ];
 
+const recPlans = [
+  { name: "Voice Receptionist", icon: "📞", orig: "$600", setup: "$300", mo: "$500", desc: "Never miss a call again — AI answers 24/7", feats: ["AI voice answers calls 24/7", "Natural human-like voice", "Automatic appointment booking", "Calendar integration", "Call summary via email", "Monthly call report", "Setup in 48h"], result: "→ Zero missed calls" },
+  { name: "Receptionist Complete", icon: "📞💬", orig: "$900", setup: "$450", mo: "$800", desc: "Phone + WhatsApp covered around the clock", feats: ["Everything in Voice +", "WhatsApp Bot 24/7", "Auto follow-up after inquiry", "SMS appointment reminders", "Lead qualification", "Priority support", "Setup in 72h"], result: "→ All channels covered", pop: true },
+  { name: "Full Front Desk", icon: "🏆", orig: "$1,200", setup: "$600", mo: "$1,000", desc: "Complete AI front desk — voice, chat & web", feats: ["Everything in Complete +", "AI Chatbot on website", "Multi-language support", "Full CRM integration", "Weekly performance report", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
+];
+
 const waPlans = [
   { name: "WhatsApp Starter", icon: "💬", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that dont want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
   { name: "WhatsApp Business", icon: "⚡", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
@@ -273,6 +279,7 @@ export default function App() {
               {[
                 { label: "🤖 AI Chatbot", sub: "WhatsApp, Telegram & Web", id: "pricing" },
                 { label: "💬 WhatsApp Bot", sub: "Direct in their WhatsApp", id: "whatsapp" },
+                { label: "📞 AI Receptionist", sub: "Answers calls 24/7", id: "receptionist" },
                 { label: "🌐 Website Creation", sub: "With AI chatbot built-in", id: "websites" },
               ].map((item, i) => (
                 <div key={i} onClick={() => go(item.id)}
@@ -301,6 +308,7 @@ export default function App() {
               {[
                 { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
                 { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
+                { label: "📞 AI Receptionist Plans", sub: "From $300 setup + $500/mo", id: "receptionist" },
                 { label: "🌐 Website Plans", sub: "From $299 one-time", id: "websites" },
               ].map((item, i) => (
                 <div key={i} onClick={() => go(item.id)}
@@ -318,8 +326,21 @@ export default function App() {
           <button onClick={() => setChat(true)} style={{ padding: "11px 26px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 13.5, cursor: "pointer", boxShadow: `0 4px 20px ${C.accentGlow}`, transition: "transform .2s" }} onMouseEnter={e => e.target.style.transform = "translateY(-1px)"} onMouseLeave={e => e.target.style.transform = "translateY(0)"}>Get Free Demo →</button>
         </div>
         <button className="mb" onClick={() => setMob(!mob)} style={{ display: "none", background: "none", border: "none", color: C.text, fontSize: 24, cursor: "pointer", alignItems: "center", justifyContent: "center" }}>{mob ? "✕" : "☰"}</button>
-        {mob && <div style={{ position: "absolute", top: 74, left: 0, right: 0, background: "rgba(6,6,11,.98)", backdropFilter: "blur(24px)", padding: "28px 32px", display: "flex", flexDirection: "column", gap: 22, borderBottom: `1px solid ${C.border}` }}>
-          {["services","pricing","blog","contact"].map(l => <a key={l} onClick={() => go(l)} style={{ color: C.text, textDecoration: "none", fontSize: 18, fontWeight: 600, cursor: "pointer", textTransform: "capitalize" }}>{l}</a>)}
+        {mob && <div style={{ position: "absolute", top: 74, left: 0, right: 0, background: "rgba(6,6,11,.98)", backdropFilter: "blur(24px)", padding: "28px 32px", display: "flex", flexDirection: "column", gap: 8, borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ fontSize: 11, color: C.dim, textTransform: "uppercase", letterSpacing: 3, fontWeight: 700, marginBottom: 4 }}>Services</div>
+          {[
+            { label: "🤖 AI Chatbot", sub: "WhatsApp, Telegram & Web", id: "pricing" },
+            { label: "💬 WhatsApp Bot", sub: "Direct in their WhatsApp", id: "whatsapp" },
+            { label: "📞 AI Receptionist", sub: "Answers calls 24/7", id: "receptionist" },
+            { label: "🌐 Website Creation", sub: "With AI chatbot built-in", id: "websites" },
+          ].map((item, i) => (
+            <div key={i} onClick={() => { go(item.id); setMob(false); }} style={{ padding: "10px 14px", borderRadius: 10, cursor: "pointer", background: "rgba(255,255,255,.03)", border: `1px solid ${C.border}` }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>{item.label}</div>
+              <div style={{ fontSize: 12, color: C.dim, marginTop: 2 }}>{item.sub}</div>
+            </div>
+          ))}
+          <div style={{ height: 1, background: C.border, margin: "8px 0" }} />
+          {["blog","contact"].map(l => <a key={l} onClick={() => { go(l); setMob(false); }} style={{ color: C.text, textDecoration: "none", fontSize: 18, fontWeight: 600, cursor: "pointer", textTransform: "capitalize", padding: "4px 0" }}>{l}</a>)}
           <button onClick={() => { setChat(true); setMob(false); }} style={{ padding: "14px", borderRadius: 12, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>Get Free Demo →</button>
         </div>}
       </nav>
@@ -351,6 +372,7 @@ export default function App() {
                     {[
                       { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
                       { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
+                      { label: "📞 AI Receptionist Plans", sub: "From $300 setup + $500/mo", id: "receptionist" },
                       { label: "🌐 Website Plans", sub: "From $299 one-time", id: "websites" },
                     ].map((item, i) => (
                       <div key={i} onClick={() => go(item.id)}
@@ -497,6 +519,52 @@ export default function App() {
                 <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
               </div>
             ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 32 }}>
+            <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = C.accent; e.currentTarget.style.color = C.accentSoft; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = C.borderLight; e.currentTarget.style.color = C.sub; }}>
+              💬 Have questions? Chat with our AI →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="receptionist" style={{ padding: "110px 32px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>AI Receptionist</p>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>AI <span style={{ color: C.accentSoft }}>Receptionist</span></h2>
+            <p style={{ color: C.sub, maxWidth: 520, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Stop losing clients to missed calls. Your AI receptionist answers every call 24/7 — for less than 3 days of a human salary.</p>
+          </div>
+          <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+            {recPlans.map((p,i) => (
+              <div key={i} style={{ background: p.pop?`linear-gradient(135deg,${C.card} 0%,rgba(124,108,240,.08) 100%)`:C.card, border: `1px solid ${p.pop?C.accent:C.border}`, borderRadius: 22, padding: 36, position: "relative", transition: "transform .3s", boxShadow: p.pop?`0 0 40px ${C.accentGlow}`:"none" }}
+                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-6px)"}
+                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
+                {p.pop && <div style={{ position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)", padding: "5px 20px", borderRadius: 20, background: C.gradBtn, fontSize: 11.5, color: "#fff", fontWeight: 800, whiteSpace: "nowrap" }}>⭐ MOST POPULAR</div>}
+                <div style={{ fontSize: 28, marginBottom: 8 }}>{p.icon}</div>
+                <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 6, fontFamily: "'Outfit',sans-serif" }}>{p.name}</h3>
+                <p style={{ fontSize: 13, color: C.sub, marginBottom: 24 }}>{p.desc}</p>
+                <div style={{ marginBottom: 8 }}><span style={{ fontSize: 13, color: C.dim, textDecoration: "line-through" }}>{p.orig}</span><span style={{ fontSize: 13, color: C.ok, marginLeft: 8, fontWeight: 700 }}>50% off</span></div>
+                <div style={{ marginBottom: 28 }}>
+                  <span style={{ fontSize: 38, fontWeight: 900, fontFamily: "'Outfit',sans-serif" }}>{p.setup}</span>
+                  <span style={{ fontSize: 14, color: C.sub }}> setup + </span>
+                  <span style={{ fontSize: 22, fontWeight: 800, color: C.accentSoft }}>{p.mo}</span>
+                  <span style={{ fontSize: 13, color: C.sub }}>/mo</span>
+                </div>
+                <div style={{ marginBottom: 16, padding: "8px 14px", borderRadius: 10, background: C.okSoft, display: "inline-block" }}>
+                  <span style={{ fontSize: 12, color: C.ok, fontWeight: 700 }}>{p.result}</span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 32 }}>
+                  {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
+                </div>
+                <button onClick={() => setChat(true)} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>Get Started — {p.setup} →</button>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 48, padding: 28, background: C.card, border: `1px solid ${C.border}`, borderRadius: 18 }}>
+            <p style={{ color: C.sub, fontSize: 15 }}>💡 <strong style={{ color: C.text }}>A human receptionist costs $3,000+/month.</strong> Your AI works 24/7 for a fraction of the price — no sick days, no vacations, no missed calls.</p>
           </div>
           <div style={{ textAlign: "center", marginTop: 32 }}>
             <button onClick={() => setChat(true)} style={{ padding: "14px 32px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all .2s" }}
