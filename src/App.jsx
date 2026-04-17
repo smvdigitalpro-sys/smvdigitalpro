@@ -649,6 +649,11 @@ function AppInner() {
 
   const removeFromCart = (id) => setCartItems(prev => prev.filter(i => i.id !== id));
   const cartTotal = cartItems.reduce((sum, i) => sum + i.setupNum, 0);
+  const cartMonthly = cartItems.reduce((sum, i) => {
+    if (!i.mo) return sum;
+    const num = parseInt(i.mo.replace(/\D/g, ""));
+    return sum + (isNaN(num) ? 0 : num);
+  }, 0);
 
   const submitCheckout = async () => {
     if (!checkoutForm.name || !checkoutForm.email) return;
@@ -902,7 +907,7 @@ function AppInner() {
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <button onClick={() => addToCart({ id: "chatbot-"+p.name, name: "AI Chatbot "+p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
+                  <button onClick={(e) => { e.stopPropagation(); addToCart({ id: "chatbot-"+p.name, name: "AI Chatbot "+p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) }); }} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
                   <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
                 </div>
               </div>
@@ -948,7 +953,7 @@ function AppInner() {
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <button onClick={() => addToCart({ id: "wa-"+p.name, name: p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
+                  <button onClick={(e) => { e.stopPropagation(); addToCart({ id: "wa-"+p.name, name: p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) }); }} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
                   <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
                 </div>
               </div>
@@ -994,7 +999,7 @@ function AppInner() {
                   {p.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: C.sub }}><span style={{ color: C.ok }}>✓</span>{f}</div>)}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <button onClick={() => addToCart({ id: "rec-"+p.name, name: p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
+                  <button onClick={(e) => { e.stopPropagation(); addToCart({ id: "rec-"+p.name, name: p.name, setup: p.setup, mo: p.mo, setupNum: parseInt(p.setup.replace(/\D/g,"")) }); }} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {p.setup}</button>
                   <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
                 </div>
               </div>
@@ -1051,7 +1056,7 @@ function AppInner() {
                     {plan.feats.map((f,j) => <div key={j} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 14, color: f.startsWith("⚠️") ? C.dim : C.sub }}><span style={{ color: f.startsWith("✅") ? C.ok : f.startsWith("⚠️") ? C.dim : C.ok }}>{ f.startsWith("✅") || f.startsWith("⚠️") ? "" : "✓"}</span>{f}</div>)}
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                    <button onClick={() => addToCart({ id: "web-"+p.name+webTab, name: p.name+(webTab===1?" (With Plan)":""), setup: plan.price, mo: webTab===1?plan.mo:null, setupNum: parseInt(plan.price.replace(/\D/g,"")) })} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {plan.price}</button>
+                    <button onClick={(e) => { e.stopPropagation(); addToCart({ id: "web-"+p.name+webTab, name: p.name+(webTab===1?" (With Plan)":""), setup: plan.price, mo: webTab===1?plan.mo:null, setupNum: parseInt(plan.price.replace(/\D/g,"")) }); }} style={{ width: "100%", padding: "16px", borderRadius: 14, background: p.pop?C.gradBtn:"transparent", border: p.pop?"none":`1.5px solid ${C.borderLight}`, color: p.pop?"#fff":C.text, fontWeight: 700, fontSize: 15, cursor: "pointer", transition: "all .2s", boxShadow: p.pop?`0 6px 24px ${C.accentGlow}`:"none" }}>🛒 Add to Cart — {plan.price}</button>
                     <button onClick={() => setChat(true)} style={{ width: "100%", padding: "10px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.sub, fontWeight: 600, fontSize: 13, cursor: "pointer" }}>💬 Ask a question</button>
                   </div>
                 </div>
@@ -1185,7 +1190,10 @@ function AppInner() {
                       <span>Setup Total</span>
                       <span style={{ color: C.accentSoft }}>${cartTotal}</span>
                     </div>
-                    <div style={{ fontSize: 12, color: C.dim, marginTop: 6 }}>+ monthly fees apply per service</div>
+                    {cartMonthly > 0 && <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 600, marginTop: 8 }}>
+                      <span style={{ color: C.dim }}>Monthly Total</span>
+                      <span style={{ color: C.ok }}>${cartMonthly}/mo</span>
+                    </div>}
                   </div>
                 </>
               )}
@@ -1226,6 +1234,9 @@ function AppInner() {
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: 15, fontWeight: 800, marginTop: 14, paddingTop: 14, borderTop: `1px solid ${C.borderLight}` }}>
                     <span>Setup Total</span><span style={{ color: C.accentSoft }}>${cartTotal}</span>
                   </div>
+                  {cartMonthly > 0 && <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontWeight: 700, marginTop: 6 }}>
+                    <span style={{ color: C.dim }}>Monthly Total</span><span style={{ color: C.ok }}>${cartMonthly}/mo</span>
+                  </div>}
                 </div>
                 {[
                   { key: "name", label: "Full Name *", placeholder: "John Smith", type: "text" },
