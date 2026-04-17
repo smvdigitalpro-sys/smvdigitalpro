@@ -26,22 +26,9 @@ const plans = [
 ];
 
 const webPlans = [
-  {
-    name: "Landing Page", icon: "🚀",
-    noSub: { orig: "$1,598", price: "$799", desc: "Site only — no chatbot, no hosting, no domain", feats: ["1 page professional design", "SEO optimized", "Mobile friendly", "48h delivery", "⚠️ Hosting paid by client (~$20/mo)", "⚠️ Domain paid by client (~$9/yr)", "⚠️ No AI chatbot included"], result: "→ Site only" },
-    withSub: { orig: "$1,598", price: "$299", mo: "$149", desc: "Full package — everything included", feats: ["1 page professional design", "AI chatbot integrated", "SEO optimized", "✅ Hosting included", "✅ Domain included", "✅ Monthly maintenance & support", "48h delivery"], result: "→ Best value" },
-  },
-  {
-    name: "Business Site", icon: "⭐",
-    noSub: { orig: "$2,998", price: "$1,499", desc: "Site only — no chatbot, no hosting, no domain", feats: ["5-7 pages custom design", "Full SEO setup", "Contact forms", "Mobile friendly", "5 days delivery", "⚠️ Hosting paid by client (~$20/mo)", "⚠️ Domain paid by client (~$9/yr)", "⚠️ No AI chatbot included"], result: "→ Site only" },
-    withSub: { orig: "$2,998", price: "$499", mo: "$199", desc: "Full package — everything included", feats: ["5-7 pages custom design", "AI chatbot integrated", "Full SEO setup", "Contact forms", "✅ Hosting included", "✅ Domain included", "✅ Monthly maintenance & support", "5 days delivery"], result: "→ Best value" },
-    pop: true,
-  },
-  {
-    name: "Full Website", icon: "👑",
-    noSub: { orig: "$4,998", price: "$2,499", desc: "Site only — no chatbot, no hosting, no domain", feats: ["10+ pages premium design", "SEO + Blog setup", "CRM integrations", "Mobile friendly", "10 days delivery", "⚠️ Hosting paid by client (~$20/mo)", "⚠️ Domain paid by client (~$9/yr)", "⚠️ No AI chatbot included"], result: "→ Site only" },
-    withSub: { orig: "$4,998", price: "$899", mo: "$299", desc: "Full package — everything included", feats: ["10+ pages premium design", "Advanced AI chatbot", "SEO + Blog setup", "CRM integrations", "✅ Hosting included", "✅ Domain included", "✅ Monthly maintenance & support", "10 days delivery"], result: "→ Best value" },
-  },
+  { name: "Landing Page", icon: "🚀", orig: "$598", price: "$299", mo: "$29", desc: "Perfect for a single, high-converting page", feats: ["1 page professional design", "AI chatbot integrated", "SEO optimized", "Free hosting", "Mobile friendly", "48h delivery"], result: "→ Fast & effective" },
+  { name: "Business Site", icon: "⭐", orig: "$998", price: "$499", mo: "$49", desc: "Complete online presence for your business", feats: ["5-7 pages custom design", "AI chatbot integrated", "Full SEO setup", "Contact forms", "Free hosting", "5 days delivery"], result: "→ Full presence", pop: true },
+  { name: "Full Website", icon: "👑", orig: "$1,798", price: "$899", mo: "$99", desc: "Premium website built to scale", feats: ["10+ pages premium design", "Advanced AI chatbot", "SEO + Blog setup", "CRM integrations", "Free hosting", "10 days delivery"], result: "→ Scale fast" },
 ];
 
 const recPlans = [
