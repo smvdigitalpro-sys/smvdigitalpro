@@ -1258,11 +1258,30 @@ function AppInner() {
                     style={{ width: "100%", padding: "14px 16px", borderRadius: 12, border: `1.5px solid ${C.border}`, background: C.bg, color: C.text, fontSize: 14, outline: "none", resize: "vertical" }}
                     onFocus={e => e.target.style.borderColor = C.accent} onBlur={e => e.target.style.borderColor = C.border} />
                 </div>
-                <button onClick={submitCheckout} disabled={checkoutLoading || !checkoutForm.name || !checkoutForm.email}
-                  style={{ width: "100%", padding: "18px", borderRadius: 14, background: (!checkoutForm.name || !checkoutForm.email) ? C.dim : C.gradBtn, border: "none", color: "#fff", fontWeight: 800, fontSize: 16, cursor: (!checkoutForm.name || !checkoutForm.email) ? "not-allowed" : "pointer", boxShadow: `0 6px 24px ${C.accentGlow}`, transition: "all .2s" }}>
-                  {checkoutLoading ? "Sending..." : "Send My Order →"}
-                </button>
-                <p style={{ fontSize: 12, color: C.dim, textAlign: "center", marginTop: 14 }}>🔒 No payment now. We'll invoice you after confirming details.</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  {/* PayPal Invoice Button */}
+                  <button onClick={() => {
+                    if (!checkoutForm.name || !checkoutForm.email) return;
+                    const items = cartItems.map(i => i.name + " (" + i.setup + (i.mo ? " + " + i.mo + "/mo" : "") + ")").join(", ");
+                    const note = encodeURIComponent("Services: " + items + " | Client: " + checkoutForm.name + " | " + checkoutForm.email);
+                    window.open("https://www.paypal.com/invoice/create?email=stancumariusvasile@yahoo.com&amount=" + cartTotal + "&note=" + note, "_blank");
+                    submitCheckout();
+                  }} disabled={!checkoutForm.name || !checkoutForm.email}
+                    style={{ width: "100%", padding: "16px", borderRadius: 14, background: (!checkoutForm.name || !checkoutForm.email) ? C.dim : "#0070BA", border: "none", color: "#fff", fontWeight: 800, fontSize: 15, cursor: (!checkoutForm.name || !checkoutForm.email) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                    🅿️ Pay with PayPal
+                  </button>
+                  {/* Talk to us Button */}
+                  <button onClick={() => { setCheckoutOpen(false); setChat(true); }}
+                    style={{ width: "100%", padding: "16px", borderRadius: 14, background: "transparent", border: `1.5px solid ${C.borderLight}`, color: C.sub, fontWeight: 700, fontSize: 15, cursor: "pointer" }}>
+                    💬 Talk to us first
+                  </button>
+                  {/* Request Quote Button */}
+                  <button onClick={submitCheckout} disabled={checkoutLoading || !checkoutForm.name || !checkoutForm.email}
+                    style={{ width: "100%", padding: "14px", borderRadius: 12, background: "transparent", border: `1px solid ${C.border}`, color: C.dim, fontWeight: 600, fontSize: 13, cursor: (!checkoutForm.name || !checkoutForm.email) ? "not-allowed" : "pointer" }}>
+                    {checkoutLoading ? "Sending..." : "📧 Just send me a quote by email"}
+                  </button>
+                </div>
+                <p style={{ fontSize: 12, color: C.dim, textAlign: "center", marginTop: 14 }}>🔒 Secure checkout · Setup fee only · Cancel anytime</p>
               </>
             )}
           </div>
