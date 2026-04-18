@@ -22,8 +22,8 @@ const services = [
 
 const plans = [
   { name: "Starter", setup: "$199", orig: "$499", mo: "$69", desc: "Start automating with zero risk", feats: ["AI chatbot on 1 channel (site, Telegram or WhatsApp)", "Answers FAQs automatically 24/7", "Basic lead capture", "Greets customers by name", "Email support", "Setup in 48h"], cta: "Start Now" },
-  { name: "Business", setup: "$299", orig: "$799", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory — recognizes returning customers", "WhatsApp + Telegram both included", "Automated appointment scheduling", "Lead qualification & follow-up", "Personalized responses", "Priority support", "Setup in 72h"], cta: "Start Free Trial", pop: true },
-  { name: "Premium", setup: "$499", orig: "$1,499", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included — unlimited messages", "Voice AI (ElevenLabs)", "Full CRM integration", "Monthly performance report", "Dedicated account manager", "Custom AI workflows", "Setup in 5 days"], cta: "Contact pe Telegram" },
+  { name: "Business", setup: "$299", orig: "$799", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory — recognizes returning customers", "WhatsApp + Telegram both included", "Automated appointment scheduling", "Lead qualification & follow-up", "Personalized responses", "Priority support", "Setup in 72h"], cta: "Book Free Consultation", pop: true },
+  { name: "Premium", setup: "$499", orig: "$1,499", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included — unlimited messages", "Voice AI (ElevenLabs)", "Full CRM integration", "Monthly performance report", "Dedicated account manager", "Custom AI workflows", "Setup in 5 days"], cta: "Contact on Telegram" },
 ];
 
 const webPlans = [
@@ -51,7 +51,7 @@ const recPlans = [
 ];
 
 const waPlans = [
-  { name: "WhatsApp Starter", icon: "💬", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that dont want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
+  { name: "WhatsApp Starter", icon: "💬", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that don't want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
   { name: "WhatsApp Business", icon: "⚡", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
   { name: "WhatsApp Premium", icon: "👑", orig: "$1,999", setup: "$999", mo: "$249", desc: "For serious businesses that want a complete system", feats: ["Everything in Business +", "Unlimited conversations", "Multi-language EN/ES/RO", "Full CRM integration", "Monthly performance report", "Voice AI optional (ElevenLabs)", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
 ];
@@ -64,9 +64,9 @@ const posts = [
 ];
 
 const reviews = [
-  { text: "We went from missing 40% of calls to zero. The AI books appointments, sends reminders, even upsells our premium services. Revenue up 35% in 3 months.", who: "Maria G.", role: "Restaurant Owner, Madrid" },
-  { text: "I was paying $2,400/month for a receptionist. Now the AI handles everything for $129/month and it never calls in sick. Best business decision this year.", who: "James K.", role: "Salon Owner, London" },
-  { text: "My AI assistant drafts better emails than I do, monitors my competitors daily, and finds me freelance opportunities I'd never have seen. It's like having a genius intern.", who: "Ana R.", role: "Consultant, Bucharest" },
+  { text: "30-day money-back guarantee on every plan. If your AI doesn't bring you at least one qualified lead in the first 30 days, we refund you 100% — no questions asked.", who: "Our Promise", role: "Risk-Free Setup" },
+  { text: "Built on Claude AI (Anthropic), ElevenLabs voice, and Vercel infrastructure — the same enterprise stack used by Fortune 500 companies. Not a cheap template. Real AI, professionally deployed.", who: "Real Tech", role: "Enterprise-Grade Stack" },
+  { text: "We're accepting 5 beta clients this month at 50% off setup — in exchange for a short testimonial once you see results. Limited spots. First come, first served.", who: "Beta Program", role: "5 Spots Left" },
 ];
 
 const SALES_SYSTEM = `You are the SMV AI Advisor, a friendly and professional AI sales assistant for SMV DigitalPro — an AI automation agency that builds AI chatbots, WhatsApp bots, AI receptionists, and websites for small businesses.
@@ -212,7 +212,14 @@ function Bot({ open, toggle }) {
     addBot(reply, demoOpts);
   };
 
-  const renderText = (text) => text.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1').replace(/#{1,3} /g, '');
+  const renderText = (text) => text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^[\-\*]\s+/gm, '• ')
+    .replace(/^\d+\.\s+/gm, '• ')
+    .replace(/`(.*?)`/g, '$1')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
 
   if (!open) return (
     <div style={{ position: "fixed", bottom: 28, right: 28, zIndex: 9999, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
@@ -1076,7 +1083,7 @@ function AppInner() {
       <section style={{ padding: "110px 32px", background: `linear-gradient(180deg,${C.bg} 0%,${C.bg2} 50%,${C.bg} 100%)` }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", letterSpacing: -.8 }}>Real Businesses, <span style={{ color: C.accentSoft }}>Real Results</span></h2>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", letterSpacing: -.8 }}>Why Businesses <span style={{ color: C.accentSoft }}>Trust Us</span></h2>
           </div>
           <div className="sg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
             {reviews.map((r,i) => (
