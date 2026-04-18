@@ -21,9 +21,9 @@ const services = [
 ];
 
 const plans = [
-  { name: "Starter", setup: "$199", orig: "$499", mo: "$69", desc: "Start automating with zero risk", feats: ["AI chatbot on 1 channel (site, Telegram or WhatsApp)", "Answers FAQs automatically 24/7", "Basic lead capture", "Greets customers by name", "Email support", "Setup in 48h"], cta: "Start Now" },
-  { name: "Business", setup: "$299", orig: "$799", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory — recognizes returning customers", "WhatsApp + Telegram both included", "Automated appointment scheduling", "Lead qualification & follow-up", "Personalized responses", "Priority support", "Setup in 72h"], cta: "Book Free Consultation", pop: true },
-  { name: "Premium", setup: "$499", orig: "$1,499", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included — unlimited messages", "Voice AI (ElevenLabs)", "Full CRM integration", "Monthly performance report", "Dedicated account manager", "Custom AI workflows", "Setup in 5 days"], cta: "Contact on Telegram" },
+  { name: "Starter", setup: "$199", orig: "$499", mo: "$69", desc: "Start automating with zero risk", feats: ["AI chatbot on 1 channel (site, Telegram or WhatsApp)", "Up to 500 conversations/month", "Answers FAQs automatically 24/7", "Basic lead capture", "Greets customers by name", "Email support", "Setup in 48h"], cta: "Start Now" },
+  { name: "Business", setup: "$299", orig: "$799", mo: "$129", desc: "The most popular plan for a reason", feats: ["AI assistant with memory — recognizes returning customers", "Up to 2,000 conversations/month", "WhatsApp + Telegram both included", "Automated appointment scheduling", "Lead qualification & follow-up", "Personalized responses", "Priority support", "Setup in 72h"], cta: "Book Free Consultation", pop: true },
+  { name: "Premium", setup: "$499", orig: "$1,499", mo: "$199", desc: "For businesses ready to scale fast", feats: ["All channels included — unlimited conversations", "Voice AI (ElevenLabs)", "Full CRM integration", "Monthly performance report", "Dedicated account manager", "Custom AI workflows", "Setup in 72h"], cta: "Book Free Consultation" },
 ];
 
 const webPlans = [
@@ -47,18 +47,18 @@ const webPlans = [
 const recPlans = [
   { name: "Voice Receptionist", icon: "📞", orig: "$600", setup: "$300", mo: "$500", desc: "Never miss a call again — AI answers 24/7", feats: ["AI voice answers calls 24/7", "Natural human-like voice", "Automatic appointment booking", "Calendar integration", "Call summary via email", "Monthly call report", "Setup in 48h"], result: "→ Zero missed calls" },
   { name: "Receptionist Complete", icon: "📞💬", orig: "$900", setup: "$450", mo: "$800", desc: "Phone + WhatsApp covered around the clock", feats: ["Everything in Voice +", "WhatsApp Bot 24/7", "Auto follow-up after inquiry", "SMS appointment reminders", "Lead qualification", "Priority support", "Setup in 72h"], result: "→ All channels covered", pop: true },
-  { name: "Full Front Desk", icon: "🏆", orig: "$1,200", setup: "$600", mo: "$1,000", desc: "Complete AI front desk — voice, chat & web", feats: ["Everything in Complete +", "AI Chatbot on website", "Multi-language support", "Full CRM integration", "Weekly performance report", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
+  { name: "Full Front Desk", icon: "🏆", orig: "$1,200", setup: "$600", mo: "$1,000", desc: "Complete AI front desk — voice, chat & web", feats: ["Everything in Complete +", "AI Chatbot on website", "Multi-language support", "Full CRM integration", "Weekly performance report", "Dedicated account manager", "Setup in 72h"], result: "→ Full automation" },
 ];
 
 const waPlans = [
-  { name: "WhatsApp Starter", icon: "💬", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that don't want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
-  { name: "WhatsApp Business", icon: "⚡", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
-  { name: "WhatsApp Premium", icon: "👑", orig: "$1,999", setup: "$999", mo: "$249", desc: "For serious businesses that want a complete system", feats: ["Everything in Business +", "Unlimited conversations", "Multi-language EN/ES/RO", "Full CRM integration", "Monthly performance report", "Voice AI optional (ElevenLabs)", "Dedicated account manager", "Setup in 5 days"], result: "→ Full automation" },
+  { name: "WhatsApp Starter", icon: "💬", orig: "$799", setup: "$399", mo: "$99", desc: "Perfect for small businesses that don't want to lose clients", feats: ["AI bot on WhatsApp 24/7", "Up to 500 conversations/month", "Answers FAQs automatically", "Confirms appointments automatically", "Greets customers by name", "Email support", "Setup in 48h"], result: "→ Never miss a client" },
+  { name: "WhatsApp Business", icon: "⚡", orig: "$1,399", setup: "$699", mo: "$149", desc: "For businesses that want to sell more automatically", feats: ["Everything in Starter +", "Up to 2,000 conversations/month", "Memory — bot recognizes returning customers", "Automatic lead qualification", "Auto follow-up after 24h", "Send offers & promotions", "Priority support", "Setup in 72h"], result: "→ Sell while you sleep", pop: true },
+  { name: "WhatsApp Premium", icon: "👑", orig: "$1,999", setup: "$999", mo: "$249", desc: "For serious businesses that want a complete system", feats: ["Everything in Business +", "Unlimited conversations", "Multi-language (5 languages)", "Full CRM integration", "Monthly performance report", "Voice AI optional (ElevenLabs)", "Dedicated account manager", "Setup in 72h"], result: "→ Full automation" },
 ];
 
 const posts = [
   { title: "Why Every Small Business Needs an AI Assistant in 2026", excerpt: "The businesses that adopt AI now will dominate their markets. Here's the data behind the shift.", cat: "AI Trends", date: "Apr 10, 2026", read: "5 min", ico: "📊" },
-  { title: "Case Study: How a Salon Doubled Bookings with AI", excerpt: "From 15 to 32 appointments per week — without hiring anyone. A real implementation breakdown.", cat: "Case Study", date: "Apr 8, 2026", read: "7 min", ico: "📈" },
+  { title: "Example Scenario: How a Salon Could Double Bookings with AI", excerpt: "An illustrative breakdown of what's possible when you add 24/7 AI booking. Based on industry benchmarks.", cat: "Strategy", date: "Apr 8, 2026", read: "7 min", ico: "📈" },
   { title: "The 80% Rule: Which Tasks AI Should Handle for You", excerpt: "Not everything should be automated. Here's a framework for deciding what to delegate to AI.", cat: "Strategy", date: "Apr 5, 2026", read: "6 min", ico: "⚙️" },
   { title: "AI Voice Assistants Are Coming for Customer Service", excerpt: "Restaurants, clinics, and salons are replacing hold music with AI that actually helps.", cat: "Industry News", date: "Apr 2, 2026", read: "4 min", ico: "🎙️" },
 ];
@@ -319,61 +319,59 @@ The good news: implementation is faster than you think. A basic AI chatbot can b
 If you're a salon, restaurant, clinic, gym, or any service business with repeat clients — an AI assistant will pay for itself in the first month.`
   },
   {
-    slug: "case-study-salon-doubled-bookings-with-ai",
-    title: "Case Study: How a Salon Doubled Bookings with AI",
-    excerpt: "From 15 to 32 appointments per week — without hiring anyone. A real implementation breakdown.",
-    cat: "Case Study",
+    slug: "example-scenario-salon-double-bookings-with-ai",
+    title: "Example Scenario: How a Salon Could Double Bookings with AI",
+    excerpt: "An illustrative breakdown of what's possible when you add 24/7 AI booking. Based on industry benchmarks.",
+    cat: "Strategy",
     date: "Apr 8, 2026",
     read: "7 min",
     ico: "📈",
-    content: `When Maria came to us, she was running a successful salon in Madrid with a serious problem: she was losing clients because she couldn't respond fast enough. Between cutting hair, managing staff, and running the business, there was no time to answer every WhatsApp message immediately.
+    content: `Note: This article is an illustrative scenario based on industry benchmarks from real AI chatbot deployments. Individual results vary. If you want to discuss your specific business case, book a free consultation.
 
-"I'd finish a client at 6pm and see 12 messages I missed during the day. Some of those people already booked somewhere else," she told us.
+Imagine a small salon with great reviews and loyal clients — but one serious problem: they're losing potential bookings because nobody can respond to WhatsApp messages fast enough. Between cutting hair, managing staff, and running the business, messages pile up. By the time the owner replies at 9pm, some clients have already booked somewhere else.
+
+This is the reality for most service businesses. Here's what changes when AI takes over the booking conversation.
 
 **The Problem**
 
-Maria's salon had great reviews and loyal clients — but her booking process was entirely manual. Clients would WhatsApp her to book, she'd reply when she could, confirm availability, and manually add it to her calendar. The process worked, but it didn't scale.
+Manual booking via WhatsApp, calls, or Instagram DMs worked when volume was low. But as a business grows, peak hours become impossible to cover — weekday evenings, Saturday mornings, holiday periods. The exact moments when most people want to book are also when the owner is busiest with actual clients.
 
-Peak hours — weekday evenings and Saturday mornings — were when most people wanted to book. That's also when Maria was busiest with actual clients.
+Industry data suggests small service businesses miss 30–50% of inbound inquiries during peak hours. Every missed message is a potential lost sale.
 
 **The Solution**
 
-We built a WhatsApp AI assistant for Luna Beauty Salon in 3 days. The AI was trained on:
+A WhatsApp AI assistant, trained on:
 
-- All services and pricing (haircut, color, manicure, facial, spa packages)
-- Available stylists and their specializations
+- All services and pricing
+- Available staff and their specializations
 - Real-time calendar integration to check and confirm availability
-- Salon policies (cancellation, deposits, late arrivals)
+- Business policies (cancellation, deposits, late arrivals)
 
-The AI could handle the entire booking process from first message to confirmed appointment — without Maria touching her phone.
+The AI handles the entire booking process from first message to confirmed appointment — without the owner touching their phone.
 
-**Week 1 Results**
+**What Week 1 Typically Looks Like**
 
-The first week, the AI handled 47 conversations. Maria had to intervene in exactly 3 of them — all unusual requests the AI flagged for human review. The other 44 were handled start to finish automatically.
+Businesses that deploy this kind of AI typically see 30–50 conversations handled in the first week, with only a handful flagged for human review. Most bookings happen at hours the owner wouldn't have been available to respond manually — 10pm on a Tuesday, 7am on a Sunday.
 
-Bookings that week: 24. Previous weekly average: 15.
+A business that previously averaged 15 bookings per week often sees this jump to 20–30+ in the first month, without any additional marketing.
 
-**Month 2 Results**
+**Month 2 Expectations**
 
-By month two, the AI had learned the most common questions and was handling 95% of conversations independently. Maria was getting a daily summary email showing new bookings, cancellations, and any conversations that needed attention.
+By month two, the AI has learned the most common questions for that specific business and handles the majority of conversations independently. The owner gets daily summary emails showing new bookings, cancellations, and any conversations flagged for attention.
 
-Weekly bookings had stabilized at 30–34. Revenue was up 35%.
+**What It Costs**
 
-"The AI knows my regulars by name. When Ana books, it already knows she always wants highlights with Maria, not the other stylists. Clients love that," Maria said.
+Our WhatsApp Business plan: $699 setup, $149/month. 
 
-**What It Cost**
-
-Setup: $299 (one-time). Monthly: $129/month.
-
-At her average service price of €55, the additional 17 weekly bookings represent €935/week in additional revenue. The AI pays for itself every single day.
+At an average service price of €55, even 10 additional weekly bookings represent €550/week in additional revenue. For most service businesses, the AI pays for itself within the first month.
 
 **Key Lessons**
 
-1. Speed wins. The AI responds in under 3 seconds at any hour. Clients who messaged at 11pm got confirmed bookings instantly.
-2. Memory matters. Recognizing returning clients creates loyalty.
-3. Automation doesn't feel robotic. Good AI feels warm and personal.
+1. Speed wins. An AI that responds in under 3 seconds at any hour captures clients that manual replies lose.
+2. Memory matters. Recognizing returning clients by name and preferences creates loyalty.
+3. Automation doesn't have to feel robotic. Well-configured AI feels warm and personal.
 
-If you run a service business and your booking process is still manual, this case study is your roadmap.`
+If you run a service business and your booking process is still manual, this scenario is a realistic picture of what's possible. Book a free consultation and we'll map out exactly what your numbers could look like.`
   },
   {
     slug: "which-tasks-should-ai-handle-for-your-business",
@@ -790,13 +788,13 @@ function AppInner() {
         <div className="hg" style={{ maxWidth: 1200, width: "100%", display: "flex", alignItems: "center", gap: 64, position: "relative" }}>
           <div style={{ flex: 1 }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px", borderRadius: 50, background: C.okSoft, border: `1px solid rgba(52,211,153,.25)`, fontSize: 13, color: C.ok, marginBottom: 32, fontWeight: 600 }}>
-              <span style={{ width: 7, height: 7, background: C.ok, borderRadius: "50%", display: "inline-block" }} /> Now accepting new clients — 48h setup
+              <span style={{ width: 7, height: 7, background: C.ok, borderRadius: "50%", display: "inline-block" }} /> Only 5 spots left this month — 48h setup
             </div>
             <h1 className="ht" style={{ fontSize: 58, fontWeight: 900, lineHeight: 1.06, marginBottom: 28, fontFamily: "'Outfit',sans-serif", letterSpacing: -1.5 }}>
-              Get More Clients<br />With an <span style={{ background: "linear-gradient(135deg,#7c6cf0,#b4a9ff,#7c6cf0)", backgroundSize: "200% 200%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gs 4s ease-in-out infinite" }}>AI Employee</span><br />That Never Sleeps
+              Stop Losing Clients.<br />Your <span style={{ background: "linear-gradient(135deg,#7c6cf0,#b4a9ff,#7c6cf0)", backgroundSize: "200% 200%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gs 4s ease-in-out infinite" }}>AI Books Them</span><br />While You Sleep.
             </h1>
-            <p style={{ fontSize: 19, color: C.sub, lineHeight: 1.7, marginBottom: 20, maxWidth: 520 }}>Stop losing clients because you can't reply instantly. Your AI responds in seconds — every time.</p>
-            <p style={{ fontSize: 16, color: C.dim, lineHeight: 1.65, marginBottom: 44, maxWidth: 520 }}>We build AI assistants that handle messages, book appointments, qualify leads, and follow up with customers — 24/7 on WhatsApp & Telegram.</p>
+            <p style={{ fontSize: 19, color: C.sub, lineHeight: 1.7, marginBottom: 20, maxWidth: 520 }}>Every missed message is a lost sale. Our AI replies in under 3 seconds — on WhatsApp, Telegram, and your website.</p>
+            <p style={{ fontSize: 16, color: C.dim, lineHeight: 1.65, marginBottom: 44, maxWidth: 520 }}>Books appointments, qualifies leads, answers questions, follows up — 24/7. Setup in 48 hours. From $199.</p>
             <div style={{ display: "flex", gap: 18, flexWrap: "wrap", marginBottom: 60 }}>
               <button onClick={() => setChat(true)} style={{ padding: "21px 46px", borderRadius: 16, background: C.gradBtn, border: "none", color: "#fff", fontWeight: 800, fontSize: 17, cursor: "pointer", boxShadow: `0 8px 40px ${C.accentGlow}`, transition: "transform .2s" }} onMouseEnter={e => e.target.style.transform = "translateY(-3px)"} onMouseLeave={e => e.target.style.transform = "translateY(0)"}>Get Your AI Demo →</button>
               <div style={{ position: "relative" }}
@@ -828,7 +826,7 @@ function AppInner() {
               </div>
             </div>
             <div className="stg" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24, paddingTop: 32, borderTop: `1px solid ${C.border}` }}>
-              {[["24/7","Always On"],["92%","Automated"],["<48h","Go Live"],["3x","More Bookings"]].map(([v,l],i) => <div key={i}><div style={{ fontSize: 30, fontWeight: 900, fontFamily: "'Outfit',sans-serif", color: C.accentSoft }}>{v}</div><div style={{ fontSize: 12, color: C.dim, marginTop: 4 }}>{l}</div></div>)}
+              {[["24/7","Always On"],["<3s","Response Time"],["<48h","Go Live"],["30d","Money-Back"]].map(([v,l],i) => <div key={i}><div style={{ fontSize: 30, fontWeight: 900, fontFamily: "'Outfit',sans-serif", color: C.accentSoft }}>{v}</div><div style={{ fontSize: 12, color: C.dim, marginTop: 4 }}>{l}</div></div>)}
             </div>
           </div>
           <div className="hv" style={{ flex: .7, display: "flex", justifyContent: "center" }}>
@@ -980,8 +978,8 @@ function AppInner() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <p style={{ fontSize: 12, color: C.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>AI Receptionist</p>
-            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>AI <span style={{ color: C.accentSoft }}>Receptionist</span></h2>
-            <p style={{ color: C.sub, maxWidth: 520, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Stop losing clients to missed calls. Your AI receptionist answers every call 24/7 — for less than 3 days of a human salary.</p>
+            <h2 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", marginBottom: 18, letterSpacing: -.8 }}>Multi-Language <span style={{ color: C.accentSoft }}>AI Receptionist</span></h2>
+            <p style={{ color: C.sub, maxWidth: 520, margin: "0 auto", fontSize: 17, lineHeight: 1.6 }}>Answers calls in English, Spanish, French, German, or Italian — natively. No more missed calls from clients who don't speak English.</p>
           </div>
           <div className="pg" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
             {recPlans.map((p,i) => (
