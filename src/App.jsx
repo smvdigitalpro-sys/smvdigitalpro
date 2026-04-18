@@ -142,7 +142,7 @@ function Bot({ open, toggle }) {
 
   useEffect(() => {
     if (open && msgs.length === 0) {
-      setMsgs([{ r: "bot", t: "Hey! 👋 I'm the SMV AI Advisor.\n\nHow can I help you today?", opts: ["💼 I want more clients", "🎬 Show me a demo", "💰 Pricing info"] }]);
+      setMsgs([{ r: "bot", t: "Hey 👋 What can I help you with?", opts: ["💼 I want more clients", "🎬 Show me a demo", "💰 Pricing info"] }]);
     }
   }, [open]);
 
