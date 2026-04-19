@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from "react-router-dom";
 
-const ANTHROPIC_API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY;
+
 
 const C = {
   bg: "#06060b", bg2: "#0c0c14", card: "#111119", card2: "#16161f",
@@ -154,14 +154,9 @@ function Bot({ open, toggle }) {
   const callClaude = async (userMsg, system, hist) => {
     const newHist = [...hist, { role: "user", content: userMsg }];
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ model: "claude-haiku-4-5", max_tokens: 300, system, messages: newHist }),
       });
       const data = await res.json();
