@@ -659,12 +659,18 @@ function AppInner() {
     if (!checkoutForm.name || !checkoutForm.email) return;
     setCheckoutLoading(true);
     const orderSummary = cartItems.map(i => i.name + ": " + i.setup + " setup" + (i.mo ? " + " + i.mo + "/mo" : "")).join("\n");
-    const body = "New Order from SMV DigitalPro!\n\nName: " + checkoutForm.name + "\nEmail: " + checkoutForm.email + "\nPhone/WhatsApp: " + checkoutForm.phone + "\n\nOrder:\n" + orderSummary + "\n\nTotal Setup: $" + cartTotal + "\n\nMessage: " + checkoutForm.message;
     try {
-      await fetch("https://formsubmit.co/ajax/hello@smvdigitalpro.com", {
+      await fetch("/api/email", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ name: checkoutForm.name, email: checkoutForm.email, message: body, _subject: "New Order — $" + cartTotal + " — SMV DigitalPro" }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: checkoutForm.name,
+          email: checkoutForm.email,
+          phone: checkoutForm.phone,
+          message: checkoutForm.message,
+          orderSummary,
+          cartTotal,
+        }),
       });
     } catch {}
     setCheckoutLoading(false);
