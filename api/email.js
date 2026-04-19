@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   // Email to YOU (notification)
   const notifyEmail = {
     from: "SMV DigitalPro <hello@smvdigitalpro.com>",
-    to: "hello@smvdigitalpro.com",
+    to: "smvdigitalpro@gmail.com",
     subject: `New Order — $${cartTotal} — ${name}`,
     html: `
       <h2>New Order from SMV DigitalPro</h2>
