@@ -609,6 +609,302 @@ function BlogPost() {
 }
 
 // ============================================================
+// LEGAL PAGES (Terms / Privacy / Refund / FAQ)
+// ============================================================
+function LegalPage({ title, subtitle, lastUpdated, children }) {
+  const C2 = {
+    bg: "#06060b", card: "#111119", accent: "#7c6cf0", accentSoft: "#b4a9ff",
+    text: "#f0f0f8", sub: "#9494b0", dim: "#5a5a72", border: "#1c1c2c",
+    grad: "linear-gradient(135deg, #7c6cf0 0%, #b4a9ff 100%)",
+    gradBtn: "linear-gradient(135deg, #7c6cf0 0%, #9b8cff 50%, #7c6cf0 100%)",
+  };
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+  return (
+    <div style={{ background: C2.bg, color: C2.text, minHeight: "100vh", fontFamily: "'DM Sans',sans-serif" }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');*{margin:0;padding:0;box-sizing:border-box} .lp h2{font-family:'Outfit',sans-serif;font-size:24px;font-weight:800;color:${C2.text};margin:36px 0 14px;letter-spacing:-.3px} .lp h3{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:${C2.text};margin:26px 0 10px} .lp p{font-size:15.5px;line-height:1.75;color:${C2.sub};margin-bottom:14px} .lp ul{margin:10px 0 18px 22px} .lp li{font-size:15.5px;line-height:1.75;color:${C2.sub};margin-bottom:6px} .lp a{color:${C2.accentSoft};text-decoration:underline} .lp strong{color:${C2.text};font-weight:600}`}</style>
+      <nav style={{ padding: "0 32px", height: 74, display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(6,6,11,.94)", backdropFilter: "blur(24px)", borderBottom: `1px solid ${C2.border}`, position: "sticky", top: 0, zIndex: 100 }}>
+        <Link to="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <div style={{ width: 38, height: 38, borderRadius: 11, background: C2.grad, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#fff", fontSize: 17, fontFamily: "'Outfit',sans-serif" }}>S</div>
+          <span style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 800, fontSize: 19, color: C2.text }}>SMV <span style={{ color: C2.accentSoft }}>DigitalPro</span></span>
+        </Link>
+        <Link to="/" style={{ color: C2.sub, textDecoration: "none", fontSize: 14, fontWeight: 500 }}>← Back to site</Link>
+      </nav>
+      <div className="lp" style={{ maxWidth: 820, margin: "0 auto", padding: "70px 32px 100px" }}>
+        <p style={{ fontSize: 12, color: C2.accent, textTransform: "uppercase", letterSpacing: 4, marginBottom: 14, fontWeight: 700 }}>Legal</p>
+        <h1 style={{ fontSize: 44, fontWeight: 900, fontFamily: "'Outfit',sans-serif", letterSpacing: -1, marginBottom: 14, color: C2.text }}>{title}</h1>
+        {subtitle && <p style={{ color: C2.sub, fontSize: 17, marginBottom: 8 }}>{subtitle}</p>}
+        <p style={{ fontSize: 13, color: C2.dim, marginBottom: 40 }}>Last updated: {lastUpdated}</p>
+        <div style={{ background: C2.card, border: `1px solid ${C2.border}`, borderRadius: 16, padding: "36px 40px" }}>
+          {children}
+        </div>
+        <div style={{ marginTop: 40, padding: "20px 24px", background: "rgba(232,197,71,0.06)", border: `1px solid rgba(232,197,71,0.2)`, borderRadius: 12, fontSize: 13, color: C2.sub, lineHeight: 1.6 }}>
+          <strong style={{ color: "#e8c547" }}>⚠ Notice:</strong> These terms are provided in good faith and reviewed periodically. They do not constitute legal advice. For business-critical concerns, please consult a qualified attorney in your jurisdiction.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TermsPage() {
+  return (
+    <LegalPage title="Terms of Service" subtitle="The rules that apply when you use SMV DigitalPro services." lastUpdated="April 24, 2026">
+      <h2>1. Who We Are</h2>
+      <p>SMV DigitalPro ("we", "us", "our") is operated by <strong>Stancu Marius Vasile</strong>, an independent freelancer based in Corbeanca, Romania, European Union. You can reach us at <strong>smvdigitalpro@gmail.com</strong>.</p>
+
+      <h2>2. Acceptance of Terms</h2>
+      <p>By accessing our website at <strong>smvdigitalpro.com</strong>, booking a consultation, or purchasing any service from us, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+
+      <h2>3. Services We Provide</h2>
+      <p>We offer custom-built artificial intelligence solutions for small and medium businesses, including:</p>
+      <ul>
+        <li>AI chatbots (web, Telegram, WhatsApp)</li>
+        <li>WhatsApp Business AI bots</li>
+        <li>AI voice receptionists</li>
+        <li>Custom websites with integrated AI</li>
+        <li>Business automation workflows</li>
+        <li>Ongoing maintenance and support subscriptions</li>
+      </ul>
+      <p>All services are described in detail on our website. We reserve the right to modify, suspend, or discontinue any service with reasonable notice.</p>
+
+      <h2>4. Pricing & Payment</h2>
+      <p>All prices are listed in US Dollars (USD) and are exclusive of any applicable taxes that may be charged depending on your location.</p>
+      <p>Most services involve a one-time <strong>setup fee</strong> plus a recurring <strong>monthly subscription</strong> for hosting, maintenance, and support. Payment is processed securely through Stripe and PayPal.</p>
+      <p>Setup fees are charged upfront before work begins. Monthly subscriptions are billed automatically on the same date each month from the day your service goes live.</p>
+
+      <h2>5. Delivery Timelines</h2>
+      <p>Delivery times advertised on our website (e.g. "48h setup", "5 days delivery") are estimates measured in business days, starting from the moment we receive all required information from you (business details, brand assets, content, access credentials, etc.).</p>
+      <p>Delays caused by client unresponsiveness or third-party services (Meta, Twilio, hosting providers) are outside our control and do not extend our refund window.</p>
+
+      <h2>6. Client Responsibilities</h2>
+      <p>To deliver your service successfully, you agree to:</p>
+      <ul>
+        <li>Provide accurate business information and branding materials</li>
+        <li>Respond to our requests for input within reasonable timeframes</li>
+        <li>Maintain ownership of any third-party accounts (WhatsApp Business, Twilio, payment processors) we configure on your behalf</li>
+        <li>Use our services only for lawful purposes</li>
+        <li>Not use our services to send spam, harass users, or violate any applicable law</li>
+      </ul>
+
+      <h2>7. Intellectual Property</h2>
+      <p>Upon full payment of all fees, you receive a non-exclusive, perpetual license to use the deliverables we create for your business. The underlying code architecture, prompts, and methodologies remain our property. You may not resell, sublicense, or redistribute our work as your own product.</p>
+
+      <h2>8. Third-Party Services</h2>
+      <p>Our services rely on third-party platforms including but not limited to Anthropic (Claude AI), OpenAI, ElevenLabs, Twilio, Vapi, Vercel, Resend, Stripe, and Meta WhatsApp Business API. Their availability, pricing, and terms are outside our control. If any of these services change in a way that affects your subscription, we will notify you and propose alternatives where possible.</p>
+
+      <h2>9. Cancellation</h2>
+      <p>You may cancel your monthly subscription at any time by emailing us at <strong>smvdigitalpro@gmail.com</strong>. Cancellation takes effect at the end of your current billing period. We do not pro-rate refunds for partially used months.</p>
+      <p>Setup fees are non-refundable once work has started, except as described in our <Link to="/refund">Refund Policy</Link>.</p>
+
+      <h2>10. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, our total liability for any claim arising from your use of our services is limited to the total amount you paid us in the 3 months preceding the claim. We are not liable for indirect, incidental, or consequential damages, including lost profits, lost data, or business interruption.</p>
+      <p>AI-generated responses are probabilistic. While we configure systems with care, we cannot guarantee that every response will be accurate or appropriate. You remain responsible for monitoring your AI deployment and reviewing critical interactions.</p>
+
+      <h2>11. Confidentiality</h2>
+      <p>We treat your business information, customer data, and configurations as confidential. We will not share, sell, or use this information for any purpose other than delivering your service.</p>
+
+      <h2>12. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. The "Last updated" date at the top reflects the most recent revision. Material changes will be communicated via email to active subscribers at least 14 days before taking effect.</p>
+
+      <h2>13. Governing Law</h2>
+      <p>These Terms are governed by the laws of Romania. Any disputes arising from these Terms or our services shall be resolved in the competent courts of Romania, unless mandatory consumer protection laws of your country of residence provide otherwise.</p>
+
+      <h2>14. Contact</h2>
+      <p>For any questions about these Terms, please email <strong>smvdigitalpro@gmail.com</strong>.</p>
+    </LegalPage>
+  );
+}
+
+function PrivacyPage() {
+  return (
+    <LegalPage title="Privacy Policy" subtitle="How we collect, use, and protect your personal data." lastUpdated="April 24, 2026">
+      <h2>1. Data Controller</h2>
+      <p>The data controller responsible for your personal data is <strong>Stancu Marius Vasile</strong>, operating as SMV DigitalPro, an independent freelancer based in Corbeanca, Romania (EU). Contact: <strong>smvdigitalpro@gmail.com</strong>.</p>
+
+      <h2>2. What Data We Collect</h2>
+      <p>We only collect data necessary to provide our services and respond to inquiries:</p>
+      <ul>
+        <li><strong>Contact data:</strong> name, email address, phone number (when you fill in our contact form, book a consultation, or place an order)</li>
+        <li><strong>Business data:</strong> company name, industry, project requirements (when discussing services)</li>
+        <li><strong>Payment data:</strong> handled directly by Stripe and PayPal — we never see or store your full card details</li>
+        <li><strong>Communication data:</strong> messages you send us via the AI chatbot, email, or contact form</li>
+        <li><strong>Technical data:</strong> IP address, browser type, pages visited (collected automatically for security and analytics)</li>
+      </ul>
+
+      <h2>3. How We Use Your Data</h2>
+      <p>We use your data only for the following purposes:</p>
+      <ul>
+        <li>To respond to your inquiries and provide quotes</li>
+        <li>To deliver and maintain the services you purchase</li>
+        <li>To process payments and issue invoices</li>
+        <li>To send you essential service-related communications (updates, downtime alerts, billing notices)</li>
+        <li>To improve our website and services</li>
+        <li>To comply with our legal obligations</li>
+      </ul>
+      <p>We do not sell, rent, or share your personal data with third parties for marketing purposes.</p>
+
+      <h2>4. Legal Basis (GDPR)</h2>
+      <p>We process your personal data based on:</p>
+      <ul>
+        <li><strong>Contract:</strong> when processing is necessary to deliver a service you requested</li>
+        <li><strong>Legitimate interest:</strong> for analytics, fraud prevention, and improving our website</li>
+        <li><strong>Consent:</strong> for any optional communications, which you can withdraw at any time</li>
+        <li><strong>Legal obligation:</strong> for tax and accounting records</li>
+      </ul>
+
+      <h2>5. Third-Party Processors</h2>
+      <p>We use trusted third-party services to operate our business. They process your data only on our behalf and under appropriate data protection agreements:</p>
+      <ul>
+        <li><strong>Vercel</strong> — website hosting (USA, EU data centers)</li>
+        <li><strong>Anthropic (Claude AI)</strong> — chatbot conversations</li>
+        <li><strong>Resend</strong> — transactional emails</li>
+        <li><strong>Stripe & PayPal</strong> — payment processing</li>
+        <li><strong>Calendly</strong> — appointment booking</li>
+        <li><strong>Google (Gmail)</strong> — internal email correspondence</li>
+      </ul>
+
+      <h2>6. AI Chatbot Conversations</h2>
+      <p>Messages you send to our AI assistant on smvdigitalpro.com are processed by Anthropic's Claude API in order to generate responses. We may review conversations to improve our service. Do not enter sensitive personal information (passwords, IDs, financial details) in the chatbot.</p>
+
+      <h2>7. Data Retention</h2>
+      <p>We keep your personal data only as long as needed:</p>
+      <ul>
+        <li>Inquiry data: 12 months from last contact</li>
+        <li>Active client data: for the duration of the service relationship</li>
+        <li>Invoicing/accounting records: 10 years (Romanian fiscal law)</li>
+        <li>Chatbot conversations: 90 days</li>
+      </ul>
+
+      <h2>8. Your Rights (GDPR)</h2>
+      <p>If you are a resident of the European Union (or otherwise covered by GDPR), you have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of your data</li>
+        <li><strong>Rectification</strong> — correct inaccurate data</li>
+        <li><strong>Erasure</strong> — request deletion of your data ("right to be forgotten")</li>
+        <li><strong>Restriction</strong> — limit how we process your data</li>
+        <li><strong>Portability</strong> — receive your data in a portable format</li>
+        <li><strong>Objection</strong> — object to processing based on legitimate interest</li>
+        <li><strong>Withdraw consent</strong> — at any time, where processing is based on consent</li>
+        <li><strong>Lodge a complaint</strong> — with your local data protection authority (in Romania: ANSPDCP — <a href="https://www.dataprotection.ro" target="_blank" rel="noopener">www.dataprotection.ro</a>)</li>
+      </ul>
+      <p>To exercise any of these rights, email <strong>smvdigitalpro@gmail.com</strong>. We respond within 30 days.</p>
+
+      <h2>9. International Data Transfers</h2>
+      <p>Some of our processors are based outside the EU (e.g. Anthropic, Stripe). When we transfer data outside the EU, we rely on Standard Contractual Clauses approved by the European Commission, or equivalent safeguards required by GDPR.</p>
+
+      <h2>10. Cookies</h2>
+      <p>Our website uses minimal cookies necessary for functionality (session, security). We do not use advertising or tracking cookies without consent. If we add analytics tools in the future, we will request your consent first.</p>
+
+      <h2>11. Security</h2>
+      <p>We protect your data with HTTPS encryption, secure third-party processors, restricted access, and regular security reviews. No system is 100% secure, but we take reasonable measures appropriate for the size of our business.</p>
+
+      <h2>12. Changes</h2>
+      <p>We may update this Privacy Policy. The "Last updated" date reflects the most recent revision. Material changes will be communicated to active clients via email.</p>
+
+      <h2>13. Contact</h2>
+      <p>For privacy questions, email <strong>smvdigitalpro@gmail.com</strong>.</p>
+    </LegalPage>
+  );
+}
+
+function RefundPage() {
+  return (
+    <LegalPage title="Refund Policy" subtitle="Our 30-day money-back guarantee — explained simply." lastUpdated="April 24, 2026">
+      <h2>The Promise</h2>
+      <p>We stand behind our work. If your AI service does not deliver value within the first 30 days of going live, we will refund your monthly subscription fee — no complicated forms, no questions asked beyond what we need to improve.</p>
+
+      <h2>What Is Refundable</h2>
+      <ul>
+        <li><strong>Monthly subscription fee</strong> — full refund if requested within 30 days of your service going live</li>
+        <li><strong>Unused subscription months</strong> — if you paid in advance for multiple months, the unused months are refundable on cancellation</li>
+      </ul>
+
+      <h2>What Is Non-Refundable</h2>
+      <ul>
+        <li><strong>Setup fees</strong> — these cover the custom development, configuration, and integration work we perform upfront. Once work has begun, this fee is non-refundable.</li>
+        <li><strong>Third-party costs we paid on your behalf</strong> — for example, domain registration, paid voice provider minutes, WhatsApp conversation fees charged by Meta</li>
+        <li><strong>Subscription periods after the 30-day window</strong> — you may cancel anytime, but past months are not refunded</li>
+        <li><strong>One-time website purchases without a subscription plan</strong> — covered by a 7-day review period instead, see below</li>
+      </ul>
+
+      <h2>One-Time Website Purchases</h2>
+      <p>For one-time website packages purchased without a maintenance subscription, we offer a <strong>7-day review period</strong> after delivery. If the website does not match the agreed scope, you may request revisions or a partial refund. After the 7-day period, all sales are final.</p>
+
+      <h2>How to Request a Refund</h2>
+      <p>Email us at <strong>smvdigitalpro@gmail.com</strong> with the subject "Refund Request" and include:</p>
+      <ul>
+        <li>Your name and the email used at purchase</li>
+        <li>The service you wish to refund</li>
+        <li>A short description of the issue (helps us improve)</li>
+      </ul>
+      <p>We respond within 2 business days and process approved refunds within 5–10 business days, returned via the original payment method.</p>
+
+      <h2>Exceptions</h2>
+      <p>We may decline refund requests in cases of:</p>
+      <ul>
+        <li>Abuse of our money-back policy (multiple refunds for similar services)</li>
+        <li>Violation of our Terms of Service (e.g. using our AI to send spam)</li>
+        <li>Requests made after the 30-day window</li>
+      </ul>
+
+      <h2>Chargebacks</h2>
+      <p>If you have an issue, please contact us first. Filing a chargeback before contacting us may delay any potential refund and could affect future service. We are committed to resolving issues quickly and fairly.</p>
+
+      <h2>Statutory Rights</h2>
+      <p>This policy does not affect any statutory consumer rights you may have under your local law (e.g. EU Consumer Rights Directive). Where local law provides stronger protections, those apply.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this policy? Email <strong>smvdigitalpro@gmail.com</strong>.</p>
+    </LegalPage>
+  );
+}
+
+function FAQPage() {
+  const C2 = { accent: "#7c6cf0", accentSoft: "#b4a9ff", text: "#f0f0f8", sub: "#9494b0", border: "#1c1c2c" };
+  const faqs = [
+    { q: "What exactly does an AI chatbot do for my business?", a: "It answers customer questions 24/7, qualifies leads, books appointments, and follows up — all automatically. It works on your website, WhatsApp, and Telegram, and remembers returning customers so each interaction feels personal." },
+    { q: "How long does setup take?", a: "Most chatbot setups go live in 48–72 hours after we receive your business information (services, prices, FAQs). WhatsApp bots can take a bit longer due to Meta's verification process. Voice receptionists typically take 3–5 business days." },
+    { q: "Do I need any technical skills?", a: "No. We handle everything — setup, integration, hosting, and ongoing maintenance. You just send us your business details, and we deliver a working AI assistant. You manage it through simple email reports we send you." },
+    { q: "What AI does the chatbot use?", a: "We build on enterprise-grade AI from Anthropic (Claude) and OpenAI (GPT). These are the same models powering Fortune 500 customer service. We're not using cheap templates or basic scripts." },
+    { q: "How is this different from a $20 Fiverr chatbot?", a: "Most cheap chatbots are template tools (Chatbase, ManyChat) with rigid button menus. Ours use real conversational AI, remember customer history, integrate with your calendar and CRM, and include hosting + monthly maintenance. We also speak fluent English, Spanish, French, and Italian natively." },
+    { q: "What does the monthly fee cover?", a: "Hosting, AI usage costs, ongoing maintenance, prompt updates as your business grows, monthly performance reports, and email support. You're not paying for software — you're paying for a managed service." },
+    { q: "Can I cancel anytime?", a: "Yes. There are no long-term contracts. Cancel anytime via email and your subscription stops at the end of the current billing month. See our Refund Policy for details on getting your money back if you're not satisfied." },
+    { q: "What happens if the AI gives a wrong answer?", a: "Edge cases happen. We monitor conversations and refine prompts as patterns emerge. For sensitive topics (pricing, medical advice, legal questions), we configure the bot to escalate to a human or refer the customer back to you." },
+    { q: "Will the chatbot speak my customer's language?", a: "Yes. We support English, Spanish, French, German, Italian, and Romanian natively. The AI auto-detects the customer's language and responds accordingly. Multi-language is included in Premium plans." },
+    { q: "Do I own what you build?", a: "Yes. After full payment, you receive a perpetual license to use everything we create for your business. The methodology and code architecture remain ours, but your specific deployment is yours." },
+    { q: "What about data privacy and GDPR?", a: "We are based in the EU and fully GDPR-compliant. Customer messages are processed by Anthropic/OpenAI in compliance with their data protection terms. We never sell your data. See our Privacy Policy for details." },
+    { q: "Can I integrate with my existing CRM or calendar?", a: "Yes — we integrate with Calendly, Google Calendar, Outlook, HubSpot, and most major tools via API. Custom integrations are available on Premium plans." },
+    { q: "What payment methods do you accept?", a: "We accept all major credit and debit cards via Stripe, plus PayPal. Payments are processed securely — we never see or store your card details." },
+    { q: "Do you offer a free trial?", a: "We don't offer free trials, but we do offer a free consultation and live demo so you can see exactly what your AI will do before paying. Plus our 30-day money-back guarantee means there's no risk if it doesn't work for you." },
+    { q: "Can you white-label this for my agency?", a: "Yes — we offer white-label arrangements for agencies and consultants who want to resell our AI services to their own clients. Email us for partnership pricing." },
+  ];
+  const [open, setOpen] = useState(0);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+  return (
+    <LegalPage title="Frequently Asked Questions" subtitle="Everything you wanted to know — answered honestly." lastUpdated="April 24, 2026">
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 8 }}>
+        {faqs.map((f, i) => (
+          <div key={i} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${C2.border}`, borderRadius: 12, overflow: "hidden", transition: "all .25s" }}>
+            <button onClick={() => setOpen(open === i ? -1 : i)}
+              style={{ width: "100%", padding: "18px 22px", background: "transparent", border: "none", color: C2.text, fontSize: 15.5, fontWeight: 600, fontFamily: "'Outfit',sans-serif", textAlign: "left", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
+              <span>{f.q}</span>
+              <span style={{ color: C2.accentSoft, fontSize: 22, fontWeight: 300, flexShrink: 0, transform: open === i ? "rotate(45deg)" : "rotate(0)", transition: "transform .25s" }}>+</span>
+            </button>
+            {open === i && (
+              <div style={{ padding: "0 22px 20px", color: C2.sub, fontSize: 15, lineHeight: 1.7, animation: "su .25s ease-out" }}>{f.a}</div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 36, padding: "22px 26px", background: "rgba(124,108,240,0.08)", border: `1px solid rgba(124,108,240,0.25)`, borderRadius: 14, textAlign: "center" }}>
+        <p style={{ color: C2.text, fontSize: 15, marginBottom: 12, fontWeight: 600 }}>Didn't find your answer?</p>
+        <p style={{ color: C2.sub, fontSize: 14, marginBottom: 16 }}>Email us at <strong style={{ color: C2.accentSoft }}>smvdigitalpro@gmail.com</strong> or chat with our AI assistant on the homepage.</p>
+        <Link to="/" style={{ display: "inline-block", padding: "10px 22px", borderRadius: 10, background: "linear-gradient(135deg, #7c6cf0 0%, #9b8cff 50%, #7c6cf0 100%)", color: "#fff", textDecoration: "none", fontSize: 13, fontWeight: 700 }}>Back to Homepage →</Link>
+      </div>
+    </LegalPage>
+  );
+}
+
+// ============================================================
 // MAIN APP WITH ROUTER
 // ============================================================
 export default function App() {
@@ -618,6 +914,10 @@ export default function App() {
         <Route path="/" element={<AppInner />} />
         <Route path="/blog" element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/refund" element={<RefundPage />} />
+        <Route path="/faq" element={<FAQPage />} />
       </Routes>
     </BrowserRouter>
   );
@@ -1157,7 +1457,17 @@ function AppInner() {
             </a>
           ))}
         </div>
-        <p style={{ fontSize: 12, color: C.dim }}>© 2026 SMV DigitalPro · AI-Powered Digital Agency</p>
+        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "10px 22px", marginBottom: 18, fontSize: 13 }}>
+          <Link to="/terms" style={{ color: C.sub, textDecoration: "none", transition: "color .2s" }} onMouseEnter={e => e.currentTarget.style.color = C.accentSoft} onMouseLeave={e => e.currentTarget.style.color = C.sub}>Terms of Service</Link>
+          <span style={{ color: C.dim }}>·</span>
+          <Link to="/privacy" style={{ color: C.sub, textDecoration: "none", transition: "color .2s" }} onMouseEnter={e => e.currentTarget.style.color = C.accentSoft} onMouseLeave={e => e.currentTarget.style.color = C.sub}>Privacy Policy</Link>
+          <span style={{ color: C.dim }}>·</span>
+          <Link to="/refund" style={{ color: C.sub, textDecoration: "none", transition: "color .2s" }} onMouseEnter={e => e.currentTarget.style.color = C.accentSoft} onMouseLeave={e => e.currentTarget.style.color = C.sub}>Refund Policy</Link>
+          <span style={{ color: C.dim }}>·</span>
+          <Link to="/faq" style={{ color: C.sub, textDecoration: "none", transition: "color .2s" }} onMouseEnter={e => e.currentTarget.style.color = C.accentSoft} onMouseLeave={e => e.currentTarget.style.color = C.sub}>FAQ</Link>
+        </div>
+        <p style={{ fontSize: 12, color: C.dim, marginBottom: 4 }}>© 2026 SMV DigitalPro · AI-Powered Digital Agency</p>
+        <p style={{ fontSize: 11, color: C.dim }}>Operated by Stancu Marius Vasile · Corbeanca, Romania · <a href="mailto:smvdigitalpro@gmail.com" style={{ color: C.dim, textDecoration: "none" }}>smvdigitalpro@gmail.com</a></p>
       </footer>
 
       <Bot open={chat} toggle={() => setChat(!chat)} />
