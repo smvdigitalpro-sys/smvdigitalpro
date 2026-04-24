@@ -45,9 +45,9 @@ const webPlans = [
 ];
 
 const recPlans = [
-  { name: "Voice Receptionist", icon: "📞", orig: "$600", setup: "$300", mo: "$500", desc: "Never miss a call again — AI answers 24/7", feats: ["AI voice answers calls 24/7", "Natural human-like voice", "Automatic appointment booking", "Calendar integration", "Call summary via email", "Monthly call report", "Setup in 48h"], result: "→ Zero missed calls" },
-  { name: "Receptionist Complete", icon: "📞💬", orig: "$900", setup: "$450", mo: "$800", desc: "Phone + WhatsApp covered around the clock", feats: ["Everything in Voice +", "WhatsApp Bot 24/7", "Auto follow-up after inquiry", "SMS appointment reminders", "Lead qualification", "Priority support", "Setup in 72h"], result: "→ All channels covered", pop: true },
-  { name: "Full Front Desk", icon: "🏆", orig: "$1,200", setup: "$600", mo: "$1,000", desc: "Complete AI front desk — voice, chat & web", feats: ["Everything in Complete +", "AI Chatbot on website", "Multi-language support", "Full CRM integration", "Weekly performance report", "Dedicated account manager", "Setup in 72h"], result: "→ Full automation" },
+  { name: "Voice Receptionist", icon: "📞", orig: "$499", setup: "$199", mo: "$249", desc: "Never miss a call again — AI answers 24/7", feats: ["AI voice answers calls 24/7", "Natural human-like voice", "Automatic appointment booking", "Calendar integration", "Call summary via email", "Monthly call report", "Setup in 48h"], result: "→ Zero missed calls" },
+  { name: "Receptionist Complete", icon: "📞💬", orig: "$699", setup: "$349", mo: "$399", desc: "Phone + WhatsApp covered around the clock", feats: ["Everything in Voice +", "WhatsApp Bot 24/7", "Auto follow-up after inquiry", "SMS appointment reminders", "Lead qualification", "Priority support", "Setup in 72h"], result: "→ All channels covered", pop: true },
+  { name: "Full Front Desk", icon: "🏆", orig: "$999", setup: "$549", mo: "$599", desc: "Complete AI front desk — voice, chat & web", feats: ["Everything in Complete +", "AI Chatbot on website", "Multi-language support", "Full CRM integration", "Weekly performance report", "Dedicated account manager", "Setup in 72h"], result: "→ Full automation" },
 ];
 
 const waPlans = [
@@ -86,9 +86,9 @@ WhatsApp Bot:
 - Premium: $999 setup + $249/mo — unlimited conversations, CRM, multi-language, Voice AI
 
 AI Receptionist (answers phone calls with human-like voice):
-- Voice: $300 setup + $500/mo — calls answered 24/7, auto appointment booking, calendar sync
-- Complete: $450 setup + $800/mo — Voice + WhatsApp Bot, SMS reminders, lead qualification
-- Full Front Desk: $600 setup + $1,000/mo — everything + website chatbot, CRM, weekly reports
+- Voice: $199 setup + $249/mo — calls answered 24/7, auto appointment booking, calendar sync
+- Complete: $349 setup + $399/mo — Voice + WhatsApp Bot, SMS reminders, lead qualification
+- Full Front Desk: $549 setup + $599/mo — everything + website chatbot, CRM, weekly reports
 
 Revenue-Ready Websites:
 - Landing Page: $299 setup + $149/mo (with plan) or $598 one-time
@@ -464,7 +464,7 @@ A dental clinic we work with was missing an estimated 20% of incoming calls duri
 
 **The Cost Equation**
 
-A human receptionist in the UK costs £24,000–£32,000 per year. An AI voice receptionist starts at $500/month — covering 24/7 availability, unlimited calls, and zero sick days.
+A human receptionist in the UK costs £24,000–£32,000 per year. An AI voice receptionist starts at $249/month — covering 24/7 availability, unlimited calls, and zero sick days.
 
 For businesses that rely on phone bookings, the ROI calculation is straightforward: how many calls per month do you miss, and what's each booking worth?
 
@@ -1042,7 +1042,7 @@ function AppInner() {
               {[
                 { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
                 { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
-                { label: "📞 AI Receptionist Plans", sub: "From $300 setup + $500/mo", id: "receptionist" },
+                { label: "📞 AI Receptionist Plans", sub: "From $199 setup + $249/mo", id: "receptionist" },
                 { label: "🌐 Website Plans", sub: "From $299 one-time", id: "websites" },
               ].map((item, i) => (
                 <div key={i} onClick={() => go(item.id)}
@@ -1111,7 +1111,7 @@ function AppInner() {
                     {[
                       { label: "🤖 AI Chatbot Plans", sub: "From $199 setup + $69/mo", id: "pricing" },
                       { label: "💬 WhatsApp Bot Plans", sub: "From $399 setup + $99/mo", id: "whatsapp" },
-                      { label: "📞 AI Receptionist Plans", sub: "From $300 setup + $500/mo", id: "receptionist" },
+                      { label: "📞 AI Receptionist Plans", sub: "From $199 setup + $249/mo", id: "receptionist" },
                       { label: "🌐 Website Plans", sub: "From $299 one-time", id: "websites" },
                     ].map((item, i) => (
                       <div key={i} onClick={() => go(item.id)}
