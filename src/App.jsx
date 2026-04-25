@@ -1575,16 +1575,29 @@ function AppInner() {
                     onFocus={e => e.target.style.borderColor = C.accent} onBlur={e => e.target.style.borderColor = C.border} />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {/* PayPal Invoice Button */}
-                  <button onClick={() => {
+                  {/* Stripe Checkout Button */}
+                  <button onClick={async () => {
                     if (!checkoutForm.name || !checkoutForm.email) return;
-                    const items = cartItems.map(i => i.name + " (" + i.setup + (i.mo ? " + " + i.mo + "/mo" : "") + ")").join(", ");
-                    const note = encodeURIComponent("Services: " + items + " | Client: " + checkoutForm.name + " | " + checkoutForm.email);
-                    window.open("https://www.paypal.com/invoice/create?email=stancumariusvasile@yahoo.com&amount=" + cartTotal + "&note=" + note, "_blank");
-                    submitCheckout();
+                    try {
+                      const response = await fetch('/api/create-checkout-session', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ priceId: 'price_1TQ6qND0C1bU359JbpIioqXd' })
+                      });
+                      const data = await response.json();
+                      if (data.url) {
+                        submitCheckout();
+                        window.location.href = data.url;
+                      } else {
+                        alert('Payment error. Please try again or contact us.');
+                      }
+                    } catch (err) {
+                      console.error('Stripe error:', err);
+                      alert('Payment error. Please try again or contact us.');
+                    }
                   }} disabled={!checkoutForm.name || !checkoutForm.email}
-                    style={{ width: "100%", padding: "16px", borderRadius: 14, background: (!checkoutForm.name || !checkoutForm.email) ? C.dim : "#0070BA", border: "none", color: "#fff", fontWeight: 800, fontSize: 15, cursor: (!checkoutForm.name || !checkoutForm.email) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-                    🅿️ Pay with PayPal
+                    style={{ width: "100%", padding: "16px", borderRadius: 14, background: (!checkoutForm.name || !checkoutForm.email) ? C.dim : "#635BFF", border: "none", color: "#fff", fontWeight: 800, fontSize: 15, cursor: (!checkoutForm.name || !checkoutForm.email) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
+                    💳 Pay with Card (Stripe)
                   </button>
                   {/* Talk to us Button */}
                   <button onClick={() => { setCheckoutOpen(false); setChat(true); }}
