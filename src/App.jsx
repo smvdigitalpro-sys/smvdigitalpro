@@ -1578,18 +1578,34 @@ function AppInner() {
                   {/* Stripe Checkout Button */}
                   <button onClick={async () => {
                     if (!checkoutForm.name || !checkoutForm.email) return;
+                    if (cartItems.length === 0) {
+                      alert('Your cart is empty.');
+                      return;
+                    }
                     try {
+                      // Build items array for Stripe (setup + monthly amounts as numbers)
+                      const stripeItems = cartItems.map(i => ({
+                        name: i.name,
+                        setup: i.setupNum || 0,
+                        monthly: i.mo ? parseInt(i.mo.replace(/\D/g, "")) || 0 : 0,
+                      }));
+
                       const response = await fetch('/api/create-checkout-session', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ priceId: 'price_1TQ6qND0C1bU359JbpIioqXd' })
+                        body: JSON.stringify({
+                          items: stripeItems,
+                          customerEmail: checkoutForm.email,
+                          customerName: checkoutForm.name,
+                        })
                       });
                       const data = await response.json();
                       if (data.url) {
                         submitCheckout();
                         window.location.href = data.url;
                       } else {
-                        alert('Payment error. Please try again or contact us.');
+                        console.error('Stripe response:', data);
+                        alert('Payment error: ' + (data.error || 'Please try again or contact us.'));
                       }
                     } catch (err) {
                       console.error('Stripe error:', err);
