@@ -1444,6 +1444,53 @@ function AppInner() {
       </section>
 
       <footer style={{ padding: "48px 32px", borderTop: `1px solid ${C.border}`, textAlign: "center" }}>
+
+        {/* Built With — enterprise tech stack badges */}
+        <div style={{ marginBottom: 36, paddingBottom: 32, borderBottom: `1px solid ${C.border}` }}>
+          <p style={{ fontSize: 11, color: C.dim, letterSpacing: 2, textTransform: "uppercase", marginBottom: 18, fontWeight: 600 }}>
+            Built on Enterprise-Grade Tech
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "14px 22px", alignItems: "center" }}>
+            {[
+              { name: "Claude AI", href: "https://www.anthropic.com" },
+              { name: "Stripe",    href: "https://stripe.com" },
+              { name: "Vercel",    href: "https://vercel.com" },
+              { name: "Twilio",    href: "https://www.twilio.com" },
+              { name: "ElevenLabs",href: "https://elevenlabs.io" },
+            ].map(({ name, href }) => (
+              <a key={name}
+                 href={href}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 style={{
+                   padding: "8px 16px",
+                   borderRadius: 8,
+                   background: "rgba(255,255,255,.03)",
+                   border: `1px solid ${C.border}`,
+                   color: C.sub,
+                   fontSize: 12,
+                   fontWeight: 600,
+                   letterSpacing: 0.3,
+                   textDecoration: "none",
+                   transition: "all .25s",
+                   fontFamily: "'Outfit',sans-serif",
+                 }}
+                 onMouseEnter={e => {
+                   e.currentTarget.style.borderColor = C.accent;
+                   e.currentTarget.style.background = "rgba(124,108,240,.08)";
+                   e.currentTarget.style.color = C.text;
+                 }}
+                 onMouseLeave={e => {
+                   e.currentTarget.style.borderColor = C.border;
+                   e.currentTarget.style.background = "rgba(255,255,255,.03)";
+                   e.currentTarget.style.color = C.sub;
+                 }}>
+                {name}
+              </a>
+            ))}
+          </div>
+        </div>
+
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 14 }}>
           <div style={{ width: 28, height: 28, borderRadius: 8, background: C.grad, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, color: "#fff", fontSize: 12 }}>S</div>
           <span style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 800, fontSize: 14, color: C.text }}>SMV DigitalPro</span>
