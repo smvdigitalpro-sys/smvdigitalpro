@@ -1601,7 +1601,9 @@ function AppInner() {
                       });
                       const data = await response.json();
                       if (data.url) {
-                        submitCheckout();
+                        // Clear cart and redirect to Stripe (email will be sent by webhook after payment)
+                        setCartItems([]);
+                        setCheckoutOpen(false);
                         window.location.href = data.url;
                       } else {
                         console.error('Stripe response:', data);
